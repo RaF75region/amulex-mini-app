@@ -16,7 +16,7 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: 'info',
-    label: 'Info',
+    label: 'Инфо',
     icon: ChatIcon,
     route: '/info',
   },

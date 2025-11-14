@@ -38,7 +38,7 @@ export const TelegramProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
         // Отправляем тестовые данные
         try {
-          tg.sendData("ddd");
+          // tg.sendData("ddd");
         //   tg.close();
           console.log('✅ sendData("ddd") отправлен в бот');
         } catch (error) {
