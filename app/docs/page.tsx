@@ -1,10 +1,13 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { DocumentCard } from '@/entities/documents';
 
 export default function DocsPage() {
+  const router = useRouter();
+
   const handleLegalAnalysis = () => {
-    console.log('Юридический анализ');
+    router.push('/docs/legal-analysis');
   };
 
   const handleFindTemplate = () => {
