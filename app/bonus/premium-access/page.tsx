@@ -1,18 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowUpRight, CheckCircle2, Link as LinkIcon, Sparkles, X } from 'lucide-react';
+import { ArrowUpRight, Link as LinkIcon, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BackButton } from '@/components/back-button';
 import { Input } from '@/components/ui/input';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { StatusDialog } from '@/components/status-dialog';
+import { useTelegram } from '@/shared/hooks/use-telegram';
 
 const conditions = [
   {
@@ -36,9 +30,11 @@ const conditions = [
 ];
 
 export default function PremiumAccessPage() {
+  const { user } = useTelegram();
   const [linkValue, setLinkValue] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogType, setDialogType] = useState<'success' | 'error'>('success');
   const [error, setError] = useState<string | null>(null);
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
 
@@ -64,6 +60,11 @@ export default function PremiumAccessPage() {
       return;
     }
 
+    if (!user?.id) {
+      setError('Не удалось получить данные пользователя');
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
 
@@ -71,17 +72,27 @@ export default function PremiumAccessPage() {
       const response = await fetch('/api/premium-access', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ link: trimmedValue }),
+        body: JSON.stringify({
+          telegram_id: user.id,
+          username: user.username || null,
+          name: user.first_name ? `${user.first_name}${user.last_name ? ' ' + user.last_name : ''}` : null,
+          link: trimmedValue,
+        }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Не удалось отправить заявку');
+        throw new Error(data.error || 'Не удалось отправить заявку');
       }
 
+      setDialogType('success');
       setDialogOpen(true);
       setLinkValue('');
-    } catch {
-      setError('Не удалось отправить заявку. Попробуйте ещё раз.');
+    } catch (err) {
+      setDialogType('error');
+      setDialogOpen(true);
+      console.error('Submit error:', err);
     } finally {
       setIsSubmitting(false);
     }
@@ -170,31 +181,11 @@ export default function PremiumAccessPage() {
         </div>
       </div>
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="rounded-[36px] p-8 text-center">
-          <DialogClose className="absolute right-6 top-6 text-gray-400" aria-label="Закрыть">
-            <X className="h-5 w-5" />
-          </DialogClose>
-          <DialogHeader className="space-y-4">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#00AFA0]/10">
-              <CheckCircle2 className="h-8 w-8 text-[#00AFA0]" />
-            </div>
-            <DialogTitle className="text-2xl font-semibold text-gray-900">Ваше обращение успешно отправлено</DialogTitle>
-            <DialogDescription className="text-sm leading-[150%] text-gray-500">
-              Рассмотрим его в течении 3-х рабочих дней
-            </DialogDescription>
-          </DialogHeader>
-          <div className="mt-6 flex justify-center">
-            <Button
-              variant="ghost"
-              className="gap-2 px-0 text-[#00AFA0] hover:bg-transparent"
-              onClick={() => setDialogOpen(false)}
-            >
-              Вернуться назад
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <StatusDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        type={dialogType}
+      />
     </div>
   );
 }

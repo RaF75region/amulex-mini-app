@@ -26,7 +26,7 @@ export default function DocsPage() {
 
         {/* Первые две карточки в ряд */}
         <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="no-hover-card">
+          <div className="no-hover-card h-full">
             <DocumentCard
               title="Юридический анализ"
               description="Расскажите, что случилось — «Твой Друг Юрист» изучит закон, практику и составит понятный план для Вашей ситуации"
@@ -34,7 +34,7 @@ export default function DocsPage() {
             />
           </div>
 
-          <div className="no-hover-card">
+          <div className="no-hover-card h-full">
             <DocumentCard
               title="Найти шаблон на сайте"
               description="Скачайте различные образцы договоров 2025, проверенные юристами. Найдите нужный вариант и загрузите в формате DOCX или PDF"

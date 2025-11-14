@@ -2,6 +2,7 @@
 
 import { MessageCircle, Search, FileText, Clipboard, Sparkles, ArrowUpRight, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const capabilities = [
   {
@@ -84,7 +85,10 @@ export default function CapabilitiesPage() {
         </section>
 
         {/* Call to Action */}
-        <section className="flex items-start gap-3 rounded-[26px] bg-[#22B1A3] p-4 shadow-[0_12px_32px_rgba(34,177,163,0.25)]">
+        <Link
+          href="/docs/contact-specialist"
+          className="flex items-start gap-3 rounded-[26px] bg-[#22B1A3] p-4 shadow-[0_12px_32px_rgba(34,177,163,0.25)] transition-all hover:shadow-[0_16px_40px_rgba(34,177,163,0.35)]"
+        >
           <div className="flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center rounded-[12px] bg-white">
             <ArrowUpRight className="h-4 w-4 text-[#22B1A3]" />
           </div>
@@ -92,11 +96,11 @@ export default function CapabilitiesPage() {
             <p className="text-[16px] font-bold leading-[1.3] text-white">Есть предложение?</p>
             <p className="text-[13px] leading-[1.3] text-white/90">Напишите нам</p>
           </div>
-        </section>
+        </Link>
 
         {/* Back Button */}
         <div className="flex justify-center pt-2">
-          <button 
+          <button
             onClick={() => router.push('/info')}
             className="flex items-center gap-2 text-[13px] text-[#6B7280] transition-colors hover:text-[#0F172A]"
           >

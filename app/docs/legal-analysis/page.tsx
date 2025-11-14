@@ -67,25 +67,25 @@ export default function LegalAnalysisPage() {
           </CardContent>
         </Card>
 
-        <div className="flex flex-col gap-4 md:flex-row">
+        <div className="flex gap-4 items-stretch">
           <button
             type="button"
             onClick={handleOrder}
-            className="group flex-1 rounded-[32px] bg-white hover:bg-[#22B1A3] p-5 text-left shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22B1A3]"
+            className="group flex-1 rounded-[32px] bg-[#22B1A3] p-5 text-left shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22B1A3] flex flex-col"
           >
             <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-full bg-[#22B1A3] flex items-center justify-center transition-colors duration-200 group-hover:bg-white">
-                <ArrowUpRight className="h-5 w-5 text-white transition-colors duration-200 group-hover:text-[#22B1A3]" />
+              <div className="h-12 w-12 rounded-full bg-white flex items-center justify-center transition-colors duration-200 flex-shrink-0">
+                <ArrowUpRight className="h-5 w-5 text-[#22B1A3] transition-colors duration-200" />
               </div>
-              <span className="text-3xl font-bold text-[#22B1A3] transition-colors duration-200 group-hover:text-white">
+              <span className="text-[20px] font-bold text-white transition-colors duration-200">
                 250 ₽
               </span>
             </div>
             <div className="mt-4 space-y-1">
-              <p className="text-xl font-semibold text-[#22B1A3] transition-colors duration-200 group-hover:text-white">
+              <p className="text-[15px] font-semibold text-white transition-colors duration-200">
                 Оформить заказ
               </p>
-              <p className="text-sm text-[#22B1A3] transition-colors duration-200 group-hover:text-white/90">
+              <p className="text-[12px] text-white/90 transition-colors duration-200">
                 Получите готовый PDF — скачайте и действуйте!
               </p>
             </div>
@@ -94,20 +94,17 @@ export default function LegalAnalysisPage() {
           <button
             type="button"
             onClick={handlePreview}
-            className="group flex-1 rounded-[32px] bg-white hover:bg-[#22B1A3] p-5 text-left shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22B1A3]"
+            className="flex-1 rounded-[32px] bg-white p-5 text-left shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22B1A3] flex flex-col"
           >
-            <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-full bg-[#22B1A3] flex items-center justify-center transition-colors duration-200 group-hover:bg-white">
-                <ArrowUpRight className="h-5 w-5 text-white transition-colors duration-200 group-hover:text-[#22B1A3]" />
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-12 w-12 rounded-full bg-[#22B1A3] flex items-center justify-center flex-shrink-0">
+                <ArrowUpRight className="h-5 w-5 text-white" />
               </div>
-              <div>
-                <p className="text-lg font-semibold text-[#22B1A3] transition-colors duration-200 group-hover:text-white">
-                  Посмотреть пример отчета
-                </p>
-                <p className="text-sm text-[#22B1A3] transition-colors duration-200 group-hover:text-white/90">
-                  Ознакомьтесь с образцом перед заказом
-                </p>
-              </div>
+            </div>
+            <div className="space-y-1">
+              <p className="text-[15px] font-semibold text-[#22B1A3]">
+                Посмотреть пример отчета
+              </p>
             </div>
           </button>
         </div>

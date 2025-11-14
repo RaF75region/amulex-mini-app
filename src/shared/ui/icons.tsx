@@ -18,10 +18,13 @@ export const CryptoIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className={className}>
     <rect width="40" height="40" rx="14" fill="currentColor" />
     <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M20 10C14.5 10 10 14.5 10 20C10 22.25 10.75 24.5 12.25 26.25L10.5 30H20C25.5 30 30 25.5 30 20C30 14.5 25.5 10 20 10ZM23.75 18.5C24.5 18.5 25.25 19 25.25 20C25.25 20.75 24.75 21.5 23.75 21.5C23 21.5 22.25 21 22.25 20C22.25 19.25 22.75 18.5 23.75 18.5ZM16.25 18.5C17 18.5 17.75 19 17.75 20C17.75 20.75 17.25 21.5 16.25 21.5C15.5 21.5 14.75 21 14.75 20C14.75 19.25 15.25 18.5 16.25 18.5ZM20 18.5C20.75 18.5 21.5 19 21.5 20C21.5 20.75 21 21.5 20 21.5C19.25 21.5 18.5 21 18.5 20C18.5 19.25 19 18.5 20 18.5Z"
+      d="M17 11L18.8 16.2L24 18L18.8 19.8L17 25L15.2 19.8L10 18L15.2 16.2L17 11Z"
       fill="white"
+    />
+    <path
+      d="M26 18L27.3 21.7L31 23L27.3 24.3L26 28L24.7 24.3L21 23L24.7 21.7L26 18Z"
+      fill="white"
+      opacity="0.85"
     />
   </svg>
 );
@@ -88,9 +91,9 @@ export const PassportIcon: React.FC<{ className?: string }> = ({ className }) =>
   </svg>
 );
 
-export const DownloadIcon: React.FC<{ className?: string; size?: number }> = ({ 
-  className, 
-  size = 32 
+export const DownloadIcon: React.FC<{ className?: string; size?: number }> = ({
+  className,
+  size = 32
 }) => (
   <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
     <path
@@ -100,9 +103,9 @@ export const DownloadIcon: React.FC<{ className?: string; size?: number }> = ({
   </svg>
 );
 
-export const UploadIcon: React.FC<{ className?: string; size?: number }> = ({ 
-  className, 
-  size = 32 
+export const UploadIcon: React.FC<{ className?: string; size?: number }> = ({
+  className,
+  size = 32
 }) => (
   <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
     <path
@@ -112,9 +115,9 @@ export const UploadIcon: React.FC<{ className?: string; size?: number }> = ({
   </svg>
 );
 
-export const ShareIcon: React.FC<{ className?: string; size?: number }> = ({ 
-  className, 
-  size = 32 
+export const ShareIcon: React.FC<{ className?: string; size?: number }> = ({
+  className,
+  size = 32
 }) => (
   <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
     <path

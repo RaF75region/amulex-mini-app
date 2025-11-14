@@ -45,7 +45,7 @@ const cards: BonusCard[] = [
     title: 'Есть предложение?',
     subtitle: 'Напишите нам',
     amount: null,
-    route: null,
+    route: '/docs/contact-specialist',
     variant: 'secondary' as const,
   },
 ];

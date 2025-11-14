@@ -5,9 +5,11 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { useTelegram } from '@/shared/hooks/use-telegram';
 
 export default function ContactSpecialistPage() {
   const router = useRouter();
+  const { user, isReady } = useTelegram();
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -20,6 +22,11 @@ export default function ContactSpecialistPage() {
       return;
     }
 
+    if (!user?.id) {
+      setError('Не удалось получить данные пользователя');
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
 
@@ -27,17 +34,23 @@ export default function ContactSpecialistPage() {
       const response = await fetch('/api/contact-specialist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({
+          telegram_id: user.id,
+          username: user.username || null,
+          message_text: message.trim(),
+        }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Не удалось отправить запрос');
+        throw new Error(data.error || 'Не удалось отправить запрос');
       }
 
       setMessage('');
       router.push('/docs');
-    } catch {
-      setError('Не удалось отправить запрос. Попробуйте ещё раз.');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Не удалось отправить запрос. Попробуйте ещё раз.');
     } finally {
       setIsSubmitting(false);
     }

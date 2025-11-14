@@ -22,6 +22,8 @@ declare global {
         expand: () => void;
         sendData: (data: string) => void;
         close: () => void;
+        openLink: (url: string, options?: { try_instant_view?: boolean }) => void;
+        openTelegramLink: (url: string) => void;
       };
     };
   }

@@ -45,8 +45,10 @@ export default function InfoPage() {
                 Перейти на сайт
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
-              <Link
-                href="mailto:info@amulex.ru"
+                            <Link
+                href="https://t.me/amulex_int"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center rounded-[22px] bg-[#E8F5F3] px-3 py-2.5 text-[13px] font-semibold text-[#22B1A3] transition-all hover:bg-[#d9eeeb]"
               >
                 Связаться
