@@ -76,7 +76,7 @@ export default function ProfilePage() {
               <p className="mt-4 font-semibold">Решение:</p>
               <p>Используйте inline кнопку в боте:</p>
               <code className="block bg-yellow-100 p-2 rounded mt-2 text-xs">
-                InlineKeyboardButton(text="Открыть", web_app=WebAppInfo(url="..."))
+                InlineKeyboardButton(text=&quot;Открыть&quot;, web_app=WebAppInfo(url=&quot;...&quot;))
               </code>
             </div>
           </div>

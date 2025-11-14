@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
 interface TelegramUser {
   id: number;
@@ -13,30 +13,27 @@ interface TelegramUser {
 }
 
 export const useTelegram = () => {
-  const [user, setUser] = useState<TelegramUser | null>(null);
-  const [initData, setInitData] = useState<string>('');
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp;
-
-      setInitData(tg.initData);
-
-      if (tg.initDataUnsafe.user) {
-        setUser(tg.initDataUnsafe.user);
-      }
-
-      setIsReady(true);
+  const telegramContext = useMemo(() => {
+    if (typeof window === 'undefined' || !window.Telegram?.WebApp) {
+      return {
+        user: null as TelegramUser | null,
+        initData: '',
+        isReady: false,
+        webApp: undefined,
+      };
     }
+
+    const tg = window.Telegram.WebApp;
+
+    return {
+      user: tg.initDataUnsafe.user ?? null,
+      initData: tg.initData ?? '',
+      isReady: true,
+      webApp: tg,
+    };
   }, []);
 
-  return {
-    user,
-    initData,
-    isReady,
-    webApp: typeof window !== 'undefined' ? window.Telegram?.WebApp : undefined,
-  };
+  return telegramContext;
 };
 
 // Утилита для получения user ID из разных источников
