@@ -23,10 +23,13 @@ export default function ProfilePage() {
             <p className="mb-3 text-[12px] leading-tight text-white/90">
               5 сообщений в день
             </p>
-            <button className="flex w-full items-center justify-center gap-1.5 rounded-[18px] bg-white px-3 py-2 text-[12px] font-semibold text-[#22B1A3] transition-all hover:bg-white/95">
+            <Link
+              href="/subscription"
+              className="flex w-full items-center justify-center gap-1.5 rounded-[18px] bg-white px-3 py-2 text-[12px] font-semibold text-[#22B1A3] transition-all hover:bg-white/95"
+            >
               Улучшить план
               <ArrowRight className="h-3.5 w-3.5" />
-            </button>
+            </Link>
           </div>
 
           {/* Consultation Card */}
