@@ -5,6 +5,7 @@ import { ArrowUpRight, Bolt, Check, Percent, Smile } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { BackButton } from '@/components/back-button';
+import { useTelegram } from '@/shared/hooks/use-telegram';
 
 const bonusCards = [
   {
@@ -21,6 +22,7 @@ const bonusCards = [
 ];
 
 export default function GiftBonusPage() {
+  const { user } = useTelegram();
   const [formData, setFormData] = useState({ name: '', phone: '' });
   const [consent, setConsent] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,11 +34,49 @@ export default function GiftBonusPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let value = event.target.value;
+
+    // Remove all non-digits
+    const digits = value.replace(/\D/g, '');
+
+    // Always start with +7
+    let formatted = '+7';
+
+    // Format: +7 (XXX) XXX-XX-XX
+    if (digits.length > 1) {
+      // Skip the leading 7 or 8 if present
+      const phoneDigits = digits.startsWith('7') || digits.startsWith('8')
+        ? digits.slice(1)
+        : digits;
+
+      if (phoneDigits.length > 0) {
+        formatted += ' (' + phoneDigits.slice(0, 3);
+      }
+      if (phoneDigits.length > 3) {
+        formatted += ') ' + phoneDigits.slice(3, 6);
+      }
+      if (phoneDigits.length > 6) {
+        formatted += '-' + phoneDigits.slice(6, 8);
+      }
+      if (phoneDigits.length > 8) {
+        formatted += '-' + phoneDigits.slice(8, 10);
+      }
+    }
+
+    setFormData((prev) => ({ ...prev, phone: formatted }));
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!consent) {
       setError('Необходимо согласие на обработку данных.');
+      return;
+    }
+
+    if (!user?.id) {
+      setError('Не удалось получить данные пользователя');
       return;
     }
 
@@ -48,17 +88,24 @@ export default function GiftBonusPage() {
       const response = await fetch('/api/bonus-gift', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          telegram_id: user.id,
+          full_name: formData.name,
+          phone: formData.phone,
+          agreement_accepted: consent,
+        }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Не удалось отправить данные');
+        throw new Error(data.error || 'Не удалось отправить данные');
       }
 
       setSuccessMessage('Заявка отправлена. Мы скоро свяжемся с вами.');
       setFormData({ name: '', phone: '' });
-    } catch {
-      setError('Не удалось отправить заявку. Попробуйте ещё раз.');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Не удалось отправить заявку. Попробуйте ещё раз.');
     } finally {
       setIsSubmitting(false);
     }
@@ -107,8 +154,8 @@ export default function GiftBonusPage() {
             <Input
               name="phone"
               value={formData.phone}
-              onChange={handleChange}
-              placeholder="+7 ___ ___-__-__"
+              onChange={handlePhoneChange}
+              placeholder="+7 (___) ___-__-__"
               className="h-12 rounded-[22px] border border-transparent bg-[#F5F7FA] px-4 text-sm text-[#0F1F2D] placeholder:text-[#98A2B3] focus:border-[#22B1A3] focus:ring-0"
             />
 

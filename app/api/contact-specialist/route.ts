@@ -28,8 +28,8 @@ export async function POST(request: Request) {
 
     try {
       const result = await client.query(
-        `INSERT INTO complaintsandsuggestions (telegram_id, username, message_text, created_at)
-         VALUES ($1, $2, $3, NOW())
+        `INSERT INTO complaintsandsuggestions (telegram_id, username, message_text)
+         VALUES ($1, $2, $3)
          RETURNING *`,
         [telegram_id, username || null, message_text.trim()]
       );

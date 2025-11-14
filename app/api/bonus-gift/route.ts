@@ -8,7 +8,7 @@ const pool = new Pool({
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { telegram_id, username, name, link } = body;
+    const { telegram_id, full_name, phone, agreement_accepted } = body;
 
     if (!telegram_id) {
       return NextResponse.json(
@@ -17,9 +17,16 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!link || !link.trim()) {
+    if (!full_name || !full_name.trim()) {
       return NextResponse.json(
-        { error: 'link is required' },
+        { error: 'full_name is required' },
+        { status: 400 }
+      );
+    }
+
+    if (!phone || !phone.trim()) {
+      return NextResponse.json(
+        { error: 'phone is required' },
         { status: 400 }
       );
     }
@@ -28,16 +35,10 @@ export async function POST(request: Request) {
 
     try {
       const result = await client.query(
-        `INSERT INTO telegram_logs (telegram_id, username, name, message_or_link, source)
-         VALUES ($1, $2, $3, $4, $5)
+        `INSERT INTO contacts (telegram_id, full_name, phone, agreement_accepted)
+         VALUES ($1, $2, $3, $4)
          RETURNING *`,
-        [
-          telegram_id,
-          username || null,
-          name || null,
-          link.trim(),
-          '1000 друзей'
-        ]
+        [telegram_id, full_name.trim(), phone.trim(), agreement_accepted ?? true]
       );
 
       return NextResponse.json({
