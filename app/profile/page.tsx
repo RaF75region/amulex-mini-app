@@ -1,87 +1,79 @@
 'use client';
 
-import { useTelegram } from '@/shared/hooks/use-telegram';
+import { ArrowRight, ArrowUpRight, HelpCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ProfilePage() {
-  const { user, initData, isReady } = useTelegram();
-
-  if (!isReady) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-50 pb-24">
-        <div className="flex flex-col items-center gap-4 p-8">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#008D80]"></div>
-          <p className="text-zinc-600">Загрузка...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 pb-24">
-      <main className="flex flex-col items-center gap-6 p-8 max-w-md">
-        <h1 className="text-4xl font-bold text-[#008D80]">Профиль</h1>
+    <div className="min-h-screen bg-[#EEF2F7] px-4 pb-32">
+      <div className="mx-auto flex max-w-[480px] flex-col gap-4 pt-6">
+        {/* Header */}
+        <h1 className="text-[26px] font-bold leading-tight text-[#0F172A]">Профиль</h1>
 
-        {user ? (
-          <div className="w-full bg-white rounded-lg p-6 shadow-md space-y-4">
-            <div className="space-y-2">
-              <p className="text-sm text-zinc-500">User ID</p>
-              <p className="text-lg font-semibold">{user.id}</p>
+        {/* Top Section */}
+        <div className="flex gap-3">
+          {/* Subscription Card */}
+          <div className="flex flex-1 flex-col justify-between rounded-[26px] bg-gradient-to-br from-[#22B1A3] to-[#1a8e82] p-4 shadow-[0_12px_32px_rgba(34,177,163,0.25)]">
+            <div className="mb-2.5 inline-flex w-fit items-center rounded-[12px] bg-white/20 px-2.5 py-1 text-[11px] font-semibold text-white">
+              Бесплатный тариф
             </div>
+            <h2 className="mb-1.5 text-[18px] font-bold leading-tight text-white">
+              Моя подписка
+            </h2>
+            <p className="mb-3 text-[12px] leading-tight text-white/90">
+              5 сообщений в день
+            </p>
+            <button className="flex w-full items-center justify-center gap-1.5 rounded-[18px] bg-white px-3 py-2 text-[12px] font-semibold text-[#22B1A3] transition-all hover:bg-white/95">
+              Улучшить план
+              <ArrowRight className="h-3.5 w-3.5" />
+            </button>
+          </div>
 
-            <div className="space-y-2">
-              <p className="text-sm text-zinc-500">Имя</p>
-              <p className="text-lg font-semibold">
-                {user.first_name} {user.last_name || ''}
+          {/* Consultation Card */}
+          <div className="flex flex-1 flex-col items-start justify-between rounded-[26px] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
+            <div className="mb-2 flex h-[40px] w-[40px] items-center justify-center rounded-[12px] bg-[#D7F5F1]">
+              <ArrowUpRight className="h-4 w-4 text-[#22B1A3]" />
+            </div>
+            <div>
+              <h3 className="mb-1 text-[15px] font-bold leading-tight text-[#0F172A]">
+                Консультация
+              </h3>
+              <p className="text-[11px] leading-[1.3] text-[#6B7280]">
+                Получить профессиональную консультацию от юриста
               </p>
             </div>
-
-            {user.username && (
-              <div className="space-y-2">
-                <p className="text-sm text-zinc-500">Username</p>
-                <p className="text-lg font-semibold">@{user.username}</p>
-              </div>
-            )}
-
-            {user.language_code && (
-              <div className="space-y-2">
-                <p className="text-sm text-zinc-500">Язык</p>
-                <p className="text-lg font-semibold">{user.language_code}</p>
-              </div>
-            )}
-
-            {user.is_premium && (
-              <div className="bg-[#008D80] text-white px-4 py-2 rounded-md text-center">
-                ⭐ Premium пользователь
-              </div>
-            )}
-
-            {initData && (
-              <div className="space-y-2 border-t pt-4">
-                <p className="text-sm text-zinc-500">Init Data (для API)</p>
-                <p className="text-xs font-mono bg-zinc-100 p-2 rounded break-all">
-                  {initData.substring(0, 50)}...
-                </p>
-              </div>
-            )}
           </div>
-        ) : (
-          <div className="w-full bg-yellow-50 border border-yellow-200 rounded-lg p-6 space-y-4">
-            <p className="text-yellow-800 font-semibold">⚠️ Данные пользователя недоступны</p>
-            <div className="text-sm text-yellow-700 space-y-2">
-              <p>Возможные причины:</p>
-              <ul className="list-disc list-inside space-y-1">
-                <li>Приложение запущено через keyboard button</li>
-                <li>Не настроена интеграция с ботом</li>
-              </ul>
-              <p className="mt-4 font-semibold">Решение:</p>
-              <p>Используйте inline кнопку в боте:</p>
-              <code className="block bg-yellow-100 p-2 rounded mt-2 text-xs">
-                InlineKeyboardButton(text=&quot;Открыть&quot;, web_app=WebAppInfo(url=&quot;...&quot;))
-              </code>
-            </div>
+        </div>
+
+        {/* Additional Services Section */}
+        <section className="space-y-2.5">
+          <div className="flex items-center justify-between">
+            <h2 className="text-[17px] font-bold text-[#0F172A]">
+              Дополнительные услуги
+            </h2>
           </div>
-        )}
-      </main>
+          <p className="text-[12px] leading-[1.4] text-[#6B7280]">
+            Получить профессиональную консультацию от юриста
+          </p>
+
+          <div className="flex gap-2.5">
+            <Link
+              href="/services"
+              className="flex h-[48px] flex-1 items-center justify-center gap-1.5 rounded-[22px] bg-[#22B1A3] text-[13px] font-semibold text-white shadow-[0_8px_24px_rgba(34,177,163,0.25)] transition-all hover:bg-[#1e9b8e]"
+            >
+              Больше услуг
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <Link
+              href="/support"
+              className="flex h-[48px] flex-1 items-center justify-center gap-1.5 rounded-[22px] bg-white text-[13px] font-semibold text-[#22B1A3] shadow-[0_8px_24px_rgba(15,23,42,0.06)] transition-all hover:bg-gray-50"
+            >
+              <HelpCircle className="h-4 w-4" />
+              Поддержка
+            </Link>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
