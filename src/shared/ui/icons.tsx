@@ -47,3 +47,79 @@ export const ProfileIcon: React.FC<{ className?: string }> = ({ className }) => 
     />
   </svg>
 );
+
+export const FileIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" className={className}>
+    <rect width="56" height="56" rx="16" fill="#008D80" />
+    <path
+      d="M32 20H24C22.9 20 22 20.9 22 22V34C22 35.1 22.9 36 24 36H34C35.1 36 36 35.1 36 34V24L32 20ZM34 34H24V22H31V25H34V34ZM26 29H32V31H26V29ZM26 26H32V28H26V26Z"
+      fill="white"
+    />
+  </svg>
+);
+
+export const ContractIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" className={className}>
+    <rect width="56" height="56" rx="16" fill="#008D80" />
+    <path
+      d="M33 20H25C23.9 20 23 20.9 23 22V34C23 35.1 23.9 36 25 36H33C34.1 36 35 35.1 35 34V22C35 20.9 34.1 20 33 20ZM29 22C29.55 22 30 22.45 30 23C30 23.55 29.55 24 29 24C28.45 24 28 23.55 28 23C28 22.45 28.45 22 29 22ZM29 26C30.1 26 31 26.9 31 28C31 29.1 30.1 30 29 30C27.9 30 27 29.1 27 28C27 26.9 27.9 26 29 26ZM33 34H25V33C25 31.67 27.67 31 29 31C30.33 31 33 31.67 33 33V34Z"
+      fill="white"
+    />
+  </svg>
+);
+
+export const CertificateIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" className={className}>
+    <rect width="56" height="56" rx="16" fill="#008D80" />
+    <path
+      d="M22 20C20.9 20 20 20.9 20 22V32C20 33.1 20.9 34 22 34H31V32H22V22H34V25H36V22C36 20.9 35.1 20 34 20H22ZM25 25V27H32V25H25ZM25 29V31H30V29H25ZM35 27.5L32.5 30L35 32.5V38L32 36.5L29 38V32.5L31.5 30L29 27.5L32 29L35 27.5Z"
+      fill="white"
+    />
+  </svg>
+);
+
+export const PassportIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" className={className}>
+    <rect width="56" height="56" rx="16" fill="#008D80" />
+    <path
+      d="M24 20C22.9 20 22 20.9 22 22V34C22 35.1 22.9 36 24 36H34C35.1 36 36 35.1 36 34V22C36 20.9 35.1 20 34 20H24ZM29 23C30.66 23 32 24.34 32 26C32 27.66 30.66 29 29 29C27.34 29 26 27.66 26 26C26 24.34 27.34 23 29 23ZM33 34H25V33C25 31 29 29.9 29 29.9C29 29.9 33 31 33 33V34Z"
+      fill="white"
+    />
+  </svg>
+);
+
+export const DownloadIcon: React.FC<{ className?: string; size?: number }> = ({ 
+  className, 
+  size = 32 
+}) => (
+  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
+    <path
+      d="M16 20L10 14H13V8H19V14H22L16 20ZM8 22V24H24V22H8Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const UploadIcon: React.FC<{ className?: string; size?: number }> = ({ 
+  className, 
+  size = 32 
+}) => (
+  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
+    <path
+      d="M16 12L22 18H19V24H13V18H10L16 12ZM8 8V10H24V8H8Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const ShareIcon: React.FC<{ className?: string; size?: number }> = ({ 
+  className, 
+  size = 32 
+}) => (
+  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" className={className}>
+    <path
+      d="M22 18C21.07 18 20.23 18.37 19.59 18.96L12.83 15.23C12.94 14.82 13 14.42 13 14C13 13.58 12.94 13.18 12.83 12.77L19.59 9.04C20.23 9.63 21.07 10 22 10C23.66 10 25 8.66 25 7C25 5.34 23.66 4 22 4C20.34 4 19 5.34 19 7C19 7.42 19.06 7.82 19.17 8.23L12.41 11.96C11.77 11.37 10.93 11 10 11C8.34 11 7 12.34 7 14C7 15.66 8.34 17 10 17C10.93 17 11.77 16.63 12.41 16.04L19.17 19.77C19.06 20.18 19 20.58 19 21C19 22.66 20.34 24 22 24C23.66 24 25 22.66 25 21C25 19.34 23.66 18 22 18Z"
+      fill="currentColor"
+    />
+  </svg>
+);

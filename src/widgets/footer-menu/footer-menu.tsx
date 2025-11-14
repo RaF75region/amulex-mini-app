@@ -10,7 +10,7 @@ export const FooterMenu: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-[#F4F5F7] rounded-t-[26px] shadow-lg">
+    <nav className="fixed bottom-0 left-0 right-0 bg-[#E9EBEF] rounded-t-[26px] shadow-lg">
       <div className="flex items-center justify-around px-4 py-5 max-w-[390px] mx-auto">
         {menuItems.map((item) => {
           const Icon = item.icon;
