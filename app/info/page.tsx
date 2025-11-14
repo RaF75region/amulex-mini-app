@@ -1,76 +1,103 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
+import { MessageCircle, Search, FileText, ClipboardCheck, Loader2, ArrowUpRight, ArrowLeft } from 'lucide-react';
 
-const infoCards = [
+const capabilities = [
   {
-    title: 'Функционал и описание',
-    subtitle: 'Что может «Твой Друг Юрист»',
-    href: '/docs',
+    icon: MessageCircle,
+    title: 'Бесплатные консультации',
+    subtitle: '(до 5 сообщений в день)',
+    bgColor: 'bg-[#D7F5F1]',
+    iconColor: 'text-[#22B1A3]',
   },
   {
-    title: 'Публичная оферта',
-    subtitle: 'По использованию «Твоего Друга Юриста»',
-    href: '/docs/legal-analysis',
+    icon: Search,
+    title: 'Анализ документов',
+    subtitle: '(PDF, фото)',
+    bgColor: 'bg-[#D7F5F1]',
+    iconColor: 'text-[#22B1A3]',
+  },
+  {
+    icon: FileText,
+    title: 'Подготовка шаблонов',
+    subtitle: 'исков, заявлений, договоров',
+    bgColor: 'bg-[#D7F5F1]',
+    iconColor: 'text-[#22B1A3]',
+  },
+  {
+    icon: ClipboardCheck,
+    title: 'Создание платного',
+    subtitle: 'аналитического отчета по вашему вопросу',
+    bgColor: 'bg-[#D7F5F1]',
+    iconColor: 'text-[#22B1A3]',
+  },
+  {
+    icon: Loader2,
+    title: 'Платная подписка:',
+    subtitle: 'безлимитные консультации (день / неделя / месяц / год)',
+    bgColor: 'bg-[#D7F5F1]',
+    iconColor: 'text-[#22B1A3]',
   },
 ];
 
 export default function InfoPage() {
   return (
     <div className="min-h-screen bg-[#EEF2F7] px-4 pb-32">
-      <div className="mx-auto flex max-w-[480px] flex-col gap-5 pt-8">
-        <h1 className="text-[32px] font-semibold leading-tight text-[#0F172A]">Информация</h1>
+      <div className="mx-auto flex max-w-[480px] flex-col gap-6 pt-8">
+        {/* Header Section */}
+        <header className="space-y-2">
+          <h1 className="text-[32px] font-bold leading-[1.15] text-[#0F172A]">
+            Что может<br />«Твой Друг Юрист»
+          </h1>
+          <p className="text-[13px] leading-[1.4]">
+            <span className="font-semibold text-[#22B1A3]">Твой Друг Юрист</span>
+            <span className="text-[#6B7280]"> — нейросеть компании Амулекс, обученная на законодательстве, подзаконных актах и судебной практики РФ</span>
+          </p>
+        </header>
 
-        <section className="rounded-[32px] bg-white p-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-1 min-w-0 flex-col gap-3">
-              <div>
-                <p className="text-base font-semibold text-[#0F172A]">Создатели</p>
-                <p className="text-sm text-[#5B6472]">Национальная Юридическая Служба</p>
-              </div>
-              <div className="inline-flex items-center gap-2 rounded-[18px] bg-[#F4F7FB] px-3 py-2 text-sm font-semibold text-[#22B1A3]">
-                <Image src="/globe.svg" alt="Amulex" width={24} height={24} />
-                amulex.ru
-              </div>
-            </div>
+        {/* Capabilities Section */}
+        <section className="space-y-2">
+          <h2 className="text-[20px] font-bold text-[#0F172A]">Что умеет:</h2>
 
-            <div className="flex w-full flex-col items-center gap-2 sm:w-[200px]">
-              <Link
-                href="https://amulex.ru"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-[24px] bg-[#22B1A3] px-4 py-3 text-sm font-semibold text-white"
-              >
-                Перейти на сайт
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="mailto:info@amulex.ru"
-                className="flex w-full items-center justify-center rounded-[24px] bg-[#E8F4F2] px-4 py-3 text-sm font-semibold text-[#22B1A3]"
-              >
-                Связаться
-              </Link>
-            </div>
+          <div className="space-y-2.5">
+            {capabilities.map((capability, index) => {
+              const Icon = capability.icon;
+              return (
+                <div
+                  key={index}
+                  className="flex items-start gap-3 rounded-[24px] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.06)]"
+                >
+                  <div className={`flex h-[48px] w-[48px] flex-shrink-0 items-center justify-center rounded-[14px] ${capability.bgColor}`}>
+                    <Icon className={`h-5 w-5 ${capability.iconColor}`} />
+                  </div>
+                  <div className="flex flex-col justify-center gap-0.5 min-w-0">
+                    <p className="text-[15px] font-semibold leading-[1.3] text-[#0F172A]">{capability.title}</p>
+                    <p className="text-[13px] leading-[1.3] text-[#6B7280]">{capability.subtitle}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
-        <section className="grid auto-rows-fr grid-cols-2 gap-3">
-          {infoCards.map((card) => (
-            <Link
-              key={card.title}
-              href={card.href}
-              className="rounded-[30px] bg-[#18B3A4] p-5 text-white shadow-[0_18px_35px_rgba(24,179,164,0.35)]"
-            >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#18B3A4]">
-                <ArrowUpRight className="h-5 w-5" />
-              </div>
-              <p className="text-base font-semibold leading-[130%]">{card.title}</p>
-              <p className="mt-2 text-xs text-white/90">{card.subtitle}</p>
-            </Link>
-          ))}
+        {/* Call to Action */}
+        <section className="flex items-start gap-3 rounded-[28px] bg-[#22B1A3] p-5 shadow-[0_12px_32px_rgba(34,177,163,0.25)]">
+          <div className="flex h-[48px] w-[48px] flex-shrink-0 items-center justify-center rounded-[14px] bg-white">
+            <ArrowUpRight className="h-5 w-5 text-[#22B1A3]" />
+          </div>
+          <div className="flex flex-col gap-0.5 justify-center">
+            <p className="text-[18px] font-bold leading-[1.3] text-white">Есть предложение?</p>
+            <p className="text-[14px] leading-[1.3] text-white/90">Напишите нам</p>
+          </div>
         </section>
+
+        {/* Back Button */}
+        <div className="flex justify-center pt-2">
+          <button className="flex items-center gap-2 text-[15px] text-[#6B7280] transition-colors hover:text-[#0F172A]">
+            <ArrowLeft className="h-4 w-4" />
+            Вернуться назад
+          </button>
+        </div>
       </div>
     </div>
   );

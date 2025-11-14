@@ -15,10 +15,8 @@ export default function DocsPage() {
   };
 
   const handleContactSpecialist = () => {
-    router.push('/docs/send-request');
-  };
-
-  return (
+    router.push('/docs/contact-specialist');
+  };  return (
     <div className="min-h-screen bg-[#E9EBEF] pb-24 px-4">
       <div className="max-w-[768px] mx-auto pt-8">
         {/* Заголовок */}
