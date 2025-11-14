@@ -23,7 +23,10 @@ const featureItems = [
 export default function LegalAnalysisPage() {
   const router = useRouter();
   const handleOrder = () => {
-    console.log('Оформить заказ');
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+      window.Telegram.WebApp.sendData('legal-consultant');
+      window.Telegram.WebApp.close();
+    }
   };
 
   const handlePreview = () => {

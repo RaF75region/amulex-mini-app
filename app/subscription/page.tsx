@@ -8,16 +8,25 @@ import Image from 'next/image';
 type SubscriptionType = 'free' | 'premium';
 
 const subscriptionPlans = [
-  { duration: '24 часа', price: '50 ₽' },
-  { duration: '7 дней', price: '99 ₽' },
-  { duration: '1 месяц', price: '199 ₽' },
-  { duration: '1 год', price: '999 ₽' },
+  { duration: '24 часа', price: '50 ₽', rateId: 3969 },
+  { duration: '7 дней', price: '99 ₽', rateId: 4019 },
+  { duration: '1 месяц', price: '199 ₽', rateId: 4021 },
+  { duration: '1 год', price: '999 ₽', rateId: 4024 },
 ];
 
 export default function SubscriptionPage() {
   const router = useRouter();
   const [subscriptionType] = useState<SubscriptionType>('free'); // Change to 'premium' to see premium state
   const isPremium = subscriptionType === 'premium';
+
+  const handlePlanSelect = (rateId: number) => {
+    // Store selected rateId in sessionStorage
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('selectedRateId', rateId.toString());
+    }
+    // Navigate to registration page
+    router.push('/registration');
+  };
 
   return (
     <div className="min-h-screen bg-[#EDEEF2] px-4 pb-8 flex flex-col">
@@ -48,6 +57,7 @@ export default function SubscriptionPage() {
           {subscriptionPlans.map((plan) => (
             <button
               key={plan.duration}
+              onClick={() => handlePlanSelect(plan.rateId)}
               className="group flex flex-col items-start rounded-[24px] bg-white p-4 shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)]"
             >
               <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-[#3FBFB3] transition-transform group-hover:scale-105">
