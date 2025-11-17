@@ -14,6 +14,7 @@ interface UserProfile {
   dateEnd: string | null;
   createdAt: string;
   purchasesId: string | null;
+  purchaseRateId: number | null;
   typeAi: string | null;
   countQueryByFree: number;
 }
@@ -23,6 +24,7 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedRateId, setSelectedRateId] = useState<string | null>(null);
 
   const openExternalLink = (url: string) => {
     if (typeof window !== 'undefined' && window.Telegram?.WebApp?.openLink) {
@@ -31,6 +33,12 @@ export default function ProfilePage() {
       window.open(url, '_blank');
     }
   };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setSelectedRateId(sessionStorage.getItem('selectedRateId'));
+    }
+  }, []);
 
   useEffect(() => {
     async function fetchProfile() {
@@ -92,6 +100,8 @@ export default function ProfilePage() {
   const messagesLeft = profile.countQueryByFree || 0;
   const isPaidUser = profile.isPaid;
   const tariffName = isPaidUser ? 'Premium тариф' : 'Бесплатный тариф';
+  const isYearlyPlanSelected = profile.purchaseRateId === 4024;
+  const shouldShowUpgradeButton = !isYearlyPlanSelected;
 
   return (
     <div className="min-h-screen bg-[#EEF2F7] px-4 pb-32">
@@ -112,7 +122,7 @@ export default function ProfilePage() {
             <p className="mb-3 text-[12px] leading-tight text-white/90">
               {isPaidUser ? 'Безлимитные сообщения' : `${messagesLeft} сообщений осталось`}
             </p>
-            {!isPaidUser && (
+            {shouldShowUpgradeButton && (
               <Link
                 href="/subscription"
                 className="flex w-full items-center justify-center gap-1.5 rounded-[18px] bg-white px-3 py-2 text-[12px] font-semibold text-[#22B1A3] transition-all hover:bg-white/95"

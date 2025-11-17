@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight, BarChart3, ListChecks, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTelegram } from '@/shared/hooks/use-telegram';
 
 const featureItems = [
   {
@@ -22,10 +23,24 @@ const featureItems = [
 
 export default function LegalAnalysisPage() {
   const router = useRouter();
-  const handleOrder = () => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      window.Telegram.WebApp.sendData('legal-consultant');
-      window.Telegram.WebApp.close();
+  const { user } = useTelegram();
+
+  const handleOrder = async () => {
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp && user?.id) {
+      try {
+        await fetch('/api/send-message-to-bot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            telegram_id: user.id,
+            message: 'legal-consultant',
+          }),
+        });
+
+        window.Telegram.WebApp.close();
+      } catch (error) {
+        console.error('Error sending message:', error);
+      }
     }
   };
 

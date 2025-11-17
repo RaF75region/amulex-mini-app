@@ -5,9 +5,11 @@ import { ArrowUpRight, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useTelegram } from '@/shared/hooks/use-telegram';
 
 export default function RegistrationPage() {
   const router = useRouter();
+  const { user } = useTelegram();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [rateId, setRateId] = useState<number | null>(null);
@@ -78,28 +80,40 @@ export default function RegistrationPage() {
       return;
     }
 
+    if (!user?.id) {
+      setError('Не удалось получить данные пользователя');
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
 
     try {
       const paymentData = {
-        action: 'send_payment_button',
-        rateId: rateId,
+        rateId: String(rateId),
         name: name.trim(),
         mobile: phone.trim(),
+        tgId: String(user.id),
       };
 
-      if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-        // Send data via Telegram WebApp API
-        window.Telegram.WebApp.sendData(JSON.stringify(paymentData));
+      const response = await fetch('https://n8n.amulex.ru/webhook/payments/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentData),
+      });
 
-        // Close the Mini App after sending data
+      if (!response.ok) {
+        throw new Error('Не удалось отправить данные');
+      }
+
+      if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
         window.Telegram.WebApp.close();
-      } else {
-        throw new Error('Telegram WebApp не доступен');
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Не удалось отправить данные');
+    } finally {
       setIsSubmitting(false);
     }
   };

@@ -22,18 +22,20 @@ export async function GET(request: Request) {
     try {
       const result = await client.query(
         `SELECT 
-          telegram_id,
-          telegram_username,
-          is_paid,
-          payment_id,
-          date_start,
-          date_end,
-          created_at,
-          purchases_id,
-          type_ai,
-          countquerybyfree
-        FROM users 
-        WHERE telegram_id = $1`,
+          users.telegram_id,
+          users.telegram_username,
+          users.is_paid,
+          users.payment_id,
+          users.date_start,
+          users.date_end,
+          users.created_at,
+          users.purchases_id,
+          users.type_ai,
+          users.countquerybyfree,
+          purchases.rate_id AS purchase_rate_id
+        FROM users
+        LEFT JOIN purchases ON purchases.id = users.purchases_id
+        WHERE users.telegram_id = $1`,
         [telegramId]
       );
 
@@ -57,6 +59,7 @@ export async function GET(request: Request) {
           dateEnd: user.date_end,
           createdAt: user.created_at,
           purchasesId: user.purchases_id,
+          purchaseRateId: user.purchase_rate_id,
           typeAi: user.type_ai,
           countQueryByFree: user.countquerybyfree,
         },

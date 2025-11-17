@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowUpRight, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -17,13 +17,28 @@ const subscriptionPlans = [
 export default function SubscriptionPage() {
   const router = useRouter();
   const [subscriptionType] = useState<SubscriptionType>('free'); // Change to 'premium' to see premium state
+  const [selectedRateId, setSelectedRateId] = useState<string | null>(null);
   const isPremium = subscriptionType === 'premium';
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedRateId = sessionStorage.getItem('selectedRateId');
+      if (storedRateId) {
+        setSelectedRateId(storedRateId);
+      }
+    }
+  }, []);
+
   const handlePlanSelect = (rateId: number) => {
+    const rateIdString = rateId.toString();
+    if (selectedRateId === rateIdString) {
+      return;
+    }
     // Store selected rateId in sessionStorage
     if (typeof window !== 'undefined') {
-      sessionStorage.setItem('selectedRateId', rateId.toString());
+      sessionStorage.setItem('selectedRateId', rateIdString);
     }
+    setSelectedRateId(rateIdString);
     // Navigate to registration page
     router.push('/registration');
   };
@@ -54,23 +69,34 @@ export default function SubscriptionPage() {
 
         {/* Subscription Cards Grid */}
         <section className="grid auto-rows-fr grid-cols-2 gap-3">
-          {subscriptionPlans.map((plan) => (
-            <button
-              key={plan.duration}
-              onClick={() => handlePlanSelect(plan.rateId)}
-              className="group flex flex-col items-start rounded-[24px] bg-white p-4 shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)]"
-            >
-              <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-[#3FBFB3] transition-transform group-hover:scale-105">
-                <ArrowUpRight className="h-5 w-5 text-white" strokeWidth={2.5} />
-              </div>
-              <p className="mb-1 text-[16px] font-semibold text-[#3FBFB3] leading-tight">
-                {plan.duration}
-              </p>
-              <p className="text-[22px] font-bold text-[#0F0F0F] leading-tight">
-                {plan.price}
-              </p>
-            </button>
-          ))}
+          {subscriptionPlans.map((plan) => {
+            const planRateIdString = plan.rateId.toString();
+            const isDisabled = selectedRateId === planRateIdString;
+
+            return (
+              <button
+                key={plan.duration}
+                onClick={() => handlePlanSelect(plan.rateId)}
+                disabled={isDisabled}
+                className={`group flex flex-col items-start rounded-[24px] bg-white p-4 shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all ${
+                  isDisabled ? 'cursor-not-allowed opacity-50' : 'hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)]'
+                }`}
+              >
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-[#3FBFB3] transition-transform group-hover:scale-105">
+                  <ArrowUpRight className="h-5 w-5 text-white" strokeWidth={2.5} />
+                </div>
+                <p className="mb-1 text-[16px] font-semibold text-[#3FBFB3] leading-tight">
+                  {plan.duration}
+                </p>
+                <p className="text-[22px] font-bold text-[#0F0F0F] leading-tight">
+                  {plan.price}
+                </p>
+                {isDisabled && (
+                  <span className="mt-2 text-[11px] font-medium text-[#898A8F]">Недоступно</span>
+                )}
+              </button>
+            );
+          })}
         </section>
 
         {/* Free Subscription Banner */}
