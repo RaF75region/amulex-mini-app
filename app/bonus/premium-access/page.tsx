@@ -104,10 +104,10 @@ export default function PremiumAccessPage() {
         <section className="relative overflow-hidden rounded-[36px] bg-[#00AFA0] px-6 py-8 text-white shadow-[0_25px_55px_rgba(3,155,142,0.35)]">
           <div className="space-y-4">
             <div>
-              <p className="text-[32px] font-semibold leading-[110%]">Премиум-доступ навсегда</p>
+              <p className="text-[32px] font-semibold leading-[110%]">Премиум-доступ на год</p>
               <p className="mt-3 text-sm leading-relaxed text-white/80">
                 Мы хотим, чтобы юридическая помощь была доступна каждому. Добавь Твоего Друга Юриста в чат Telegram и
-                получи бесплатный доступ к консультациям навсегда.
+                получи бесплатный доступ к консультациям на год.
               </p>
             </div>
           </div>

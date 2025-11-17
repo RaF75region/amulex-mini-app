@@ -11,7 +11,9 @@ export default function DocsPage() {
   };
 
   const handleFindTemplate = () => {
-    console.log('Найти шаблон');
+    if (typeof window !== 'undefined') {
+      window.open('https://amulex.ru/docs', '_blank');
+    }
   };
 
   const handleContactSpecialist = () => {
@@ -47,7 +49,7 @@ export default function DocsPage() {
         <div className="mb-6 highlighted-card">
           <DocumentCard
             title="Не нашли, что искали?"
-            description="Отправьте запрос, наши специалисты свяжутся с Вами в течение 10 минут"
+            description="Напишите нам ваше предложение - чего не хватает в нашем функционале?"
             onClick={handleContactSpecialist}
             showIllustration={true}
           />

@@ -27,11 +27,23 @@ export default function ProfilePage() {
   const [selectedRateId, setSelectedRateId] = useState<string | null>(null);
 
   const openExternalLink = (url: string) => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp?.openLink) {
-      window.Telegram.WebApp.openLink(url);
-    } else {
-      window.open(url, '_blank');
+    if (typeof window === 'undefined') {
+      return;
     }
+
+    const telegramWebApp = webApp ?? window.Telegram?.WebApp;
+
+    if (url.startsWith('https://t.me') && telegramWebApp?.openTelegramLink) {
+      telegramWebApp.openTelegramLink(url);
+      return;
+    }
+
+    if (telegramWebApp?.openLink) {
+      telegramWebApp.openLink(url);
+      return;
+    }
+
+    window.open(url, '_blank');
   };
 
   useEffect(() => {

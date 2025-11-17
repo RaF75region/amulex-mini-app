@@ -4,16 +4,26 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 
-const infoCards = [
+type InfoCard = {
+  title: string;
+  subtitle: string;
+  href: string;
+  target?: '_blank' | '_self';
+  rel?: string;
+};
+
+const infoCards: InfoCard[] = [
   {
     title: 'Функционал и описание',
     subtitle: 'Что может Твой Друг Юрист',
     href: 'info/capabilities',
   },
   {
-    title: 'Публичная оферта',
+    title: 'Персональные данные',
     subtitle: 'По использованию «Твоего Друга Юриста»',
-    href: '#',
+    href: '/Politici_personal_data.pdf',
+    target: '_blank',
+    rel: 'noopener noreferrer',
   },
 ];
 
@@ -62,6 +72,8 @@ export default function InfoPage() {
             <Link
               key={card.title}
               href={card.href}
+              target={card.target}
+              rel={card.rel}
               className="group rounded-[26px] bg-[#22B1A3] p-4 text-white shadow-[0_8px_24px_rgba(34,177,163,0.25)] transition-all hover:shadow-[0_12px_32px_rgba(34,177,163,0.35)]"
             >
               <div className="mb-2.5 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#22B1A3] transition-transform group-hover:scale-105">

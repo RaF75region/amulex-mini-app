@@ -43,6 +43,10 @@ export default function SubscriptionPage() {
     router.push('/registration');
   };
 
+  const handleBonusClick = () => {
+    router.push('/bonus');
+  };
+
   return (
     <div className="min-h-screen bg-[#EDEEF2] px-4 pb-8 flex flex-col">
       <div className="mx-auto flex w-full max-w-[480px] flex-col gap-4 pt-6 flex-1">
@@ -100,7 +104,11 @@ export default function SubscriptionPage() {
         </section>
 
         {/* Free Subscription Banner */}
-        <section className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#3FBFB3] to-[#2ea599] p-5 shadow-[0_8px_32px_rgba(63,191,179,0.3)]">
+        <button
+          type="button"
+          onClick={handleBonusClick}
+          className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#3FBFB3] to-[#2ea599] p-5 shadow-[0_8px_32px_rgba(63,191,179,0.3)] text-left"
+        >
           <div className="relative z-10 flex items-center justify-between gap-4">
             <div className="flex-1">
               <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-full bg-white">
@@ -120,7 +128,7 @@ export default function SubscriptionPage() {
               />
             </div>
           </div>
-        </section>
+        </button>
       </div>
 
       {/* Back Button */}

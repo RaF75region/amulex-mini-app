@@ -18,7 +18,7 @@ interface BonusCard {
 const cards: BonusCard[] = [
   {
     id: 'premium',
-    title: 'Подписка навсегда',
+    title: 'Подписка на год',
     subtitle: 'Добавьте бота в чат от 1000 человек',
     amount: '0₽',
     route: '/bonus/premium-access',
