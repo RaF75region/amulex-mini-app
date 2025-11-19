@@ -40,6 +40,29 @@ export async function POST(request: Request) {
         ]
       );
 
+      // Send message to Telegram group
+      const botToken = process.env.TELEGRAM_BOT_TOKEN;
+      const groupId = process.env.TELEGRAM_GROUP_ID;
+
+      if (botToken && groupId) {
+        const messageText = `🎁 Новый запрос на премиум доступ (1000 друзей)
+
+      👤 От: ${username || 'Аноним'} (ID: ${telegram_id})
+      📝 Имя: ${name || 'Не указано'}
+      🔗 Ссылка: ${link.trim()}`;
+
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: groupId,
+            text: messageText,
+          }),
+        }).catch(err => console.error('Failed to send Telegram message:', err));
+      }
+
       return NextResponse.json({
         success: true,
         data: result.rows[0],

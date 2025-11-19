@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
+import { promises as fs } from 'fs';
+import path from 'path';
+import nodemailer from 'nodemailer';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -40,6 +43,47 @@ export async function POST(request: Request) {
          RETURNING *`,
         [telegram_id, full_name.trim(), phone.trim(), agreement_accepted ?? true]
       );
+
+      // Send email notification
+      // try {
+      //   const templatePath = path.join(process.cwd(), 'app', 'api', 'bonus-gift', 'email-template.html');
+      //   let emailTemplate = await fs.readFile(templatePath, 'utf-8');
+
+      //   const currentDate = new Date().toLocaleString('ru-RU', {
+      //     year: 'numeric',
+      //     month: 'long',
+      //     day: 'numeric',
+      //     hour: '2-digit',
+      //     minute: '2-digit'
+      //   });
+
+      //   emailTemplate = emailTemplate
+      //     .replace('{{FULL_NAME}}', full_name.trim())
+      //     .replace('{{PHONE}}', phone.trim())
+      //     .replace('{{TELEGRAM_ID}}', telegram_id.toString())
+      //     .replace('{{AGREEMENT}}', agreement_accepted ? 'Принято' : 'Не принято')
+      //     .replace('{{DATE}}', currentDate);
+
+      //   const transporter = nodemailer.createTransport({
+      //     host: process.env.SMTP_HOST,
+      //     port: parseInt(process.env.SMTP_PORT || '587'),
+      //     secure: process.env.SMTP_SECURE === 'true',
+      //     auth: {
+      //       user: process.env.SMTP_USER,
+      //       pass: process.env.SMTP_PASSWORD,
+      //     },
+      //   });
+
+      //   await transporter.sendMail({
+      //     from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      //     to: process.env.BONUS_EMAIL,
+      //     subject: '🎁 Новая заявка на подарок от Твой Друг Юрист',
+      //     html: emailTemplate,
+      //   });
+      // } catch (emailError) {
+      //   console.error('Failed to send email:', emailError);
+      //   // Don't fail the request if email sending fails
+      // }
 
       return NextResponse.json({
         success: true,
