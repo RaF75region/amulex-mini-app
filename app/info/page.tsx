@@ -29,12 +29,11 @@ const infoCards: InfoCard[] = [
 
 export default function InfoPage() {
   return (
-    <div className="min-h-screen bg-[#EEF2F7] px-4 pb-32">
-      <div className="mx-auto flex max-w-[480px] flex-col gap-4 pt-6">
-        <h1 className="text-[26px] font-bold leading-tight text-[#0F172A]">Информация</h1>
+    <div className="mx-auto flex max-w-[480px] flex-col gap-4">
+      <h1 className="text-[26px] font-bold leading-tight text-[#0F172A]">Информация</h1>
 
-        <section className="rounded-[26px] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
-          <div className="flex items-start justify-between gap-4">
+      <section className="rounded-[26px] bg-white p-5 shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
+        <div className="flex items-start justify-between gap-4">
             <div className="flex flex-1 flex-col gap-3">
               <div>
                 <p className="text-[17px] font-bold text-[#0F172A] mb-1">Создатели</p>
@@ -64,11 +63,11 @@ export default function InfoPage() {
                 Связаться
               </Link>
             </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="grid auto-rows-fr grid-cols-2 gap-3">
-          {infoCards.map((card) => (
+      <section className="grid auto-rows-fr grid-cols-2 gap-3">
+        {infoCards.map((card) => (
             <Link
               key={card.title}
               href={card.href}
@@ -85,6 +84,5 @@ export default function InfoPage() {
           ))}
         </section>
       </div>
-    </div>
-  );
-}
+    );
+  }

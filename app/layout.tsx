@@ -28,14 +28,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F3F5F9]`}
       >
         <Script
           src="https://telegram.org/js/telegram-web-app.js?59"
           strategy="beforeInteractive"
         />
         <TelegramProvider>
-          {children}
+          <main className="pb-32 px-6 pt-6 min-h-screen">
+            {children}
+          </main>
           <FooterMenu />
         </TelegramProvider>
       </body>

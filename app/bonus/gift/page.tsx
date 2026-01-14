@@ -5,6 +5,7 @@ import { ArrowUpRight, Bolt, Check, Percent, Smile } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { BackButton } from '@/components/back-button';
+import { StatusDialog } from '@/components/status-dialog';
 import { useTelegram } from '@/shared/hooks/use-telegram';
 
 const bonusCards = [
@@ -27,7 +28,7 @@ export default function GiftBonusPage() {
   const [consent, setConsent] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -82,7 +83,6 @@ export default function GiftBonusPage() {
 
     setIsSubmitting(true);
     setError(null);
-    setSuccessMessage(null);
 
     try {
       const response = await fetch('/api/bonus-gift', {
@@ -102,7 +102,7 @@ export default function GiftBonusPage() {
         throw new Error(data.error || 'Не удалось отправить данные');
       }
 
-      setSuccessMessage('Заявка отправлена. Мы скоро свяжемся с вами.');
+      setShowSuccessDialog(true);
       setFormData({ name: '', phone: '' });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Не удалось отправить заявку. Попробуйте ещё раз.');
@@ -181,7 +181,6 @@ export default function GiftBonusPage() {
             </label>
 
             {error && <p className="text-[11px] text-red-500">{error}</p>}
-            {successMessage && <p className="text-[11px] text-[#22B1A3]">{successMessage}</p>}
 
             <Button
               type="submit"
@@ -198,6 +197,14 @@ export default function GiftBonusPage() {
           <BackButton href="/bonus" />
         </div>
       </div>
+
+      <StatusDialog
+        open={showSuccessDialog}
+        onOpenChange={setShowSuccessDialog}
+        type="success"
+        title="Заявка отправлена"
+        description="Мы скоро свяжемся с вами для уточнения деталей."
+      />
     </div>
   );
 }

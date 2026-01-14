@@ -18,16 +18,17 @@ export default function DocsPage() {
 
   const handleContactSpecialist = () => {
     router.push('/docs/contact-specialist');
-  };  return (
-    <div className="min-h-screen bg-[#E9EBEF] pb-24 px-4">
-      <div className="max-w-[768px] mx-auto pt-8">
-        {/* Заголовок */}
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">
-          Документы
-        </h1>
+  };
 
-        {/* Первые две карточки в ряд */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
+  return (
+    <div className="max-w-[768px] mx-auto">
+      {/* Заголовок */}
+      <h1 className="text-4xl font-bold text-gray-900 mb-8">
+        Документы
+      </h1>
+
+      {/* Первые две карточки в ряд */}
+      <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="no-hover-card h-full">
             <DocumentCard
               title="Юридический анализ"
@@ -55,58 +56,5 @@ export default function DocsPage() {
           />
         </div>
       </div>
-
-      <style jsx>{`
-        .no-hover-card :global(.group:hover) {
-          background-color: #ffffff !important;
-          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
-        }
-
-        .no-hover-card :global(.group .group-hover\:bg-white) {
-          background-color: #22b1a3 !important;
-          color: #ffffff !important;
-        }
-
-        .no-hover-card :global(.group h3.group-hover\:text-white) {
-          color: #111827 !important;
-        }
-
-        .no-hover-card :global(.group p.group-hover\:text-white) {
-          color: #6b7280 !important;
-        }
-
-        .no-hover-card :global(.group .group-hover\:text-\[\#22B1A3\]) {
-          color: #ffffff !important;
-        }
-
-        .highlighted-card :global(.group) {
-          background-color: #22b1a3 !important;
-          color: #ffffff !important;
-          box-shadow: 0 10px 15px -3px rgba(34, 177, 163, 0.35), 0 4px 6px -4px rgba(34, 177, 163, 0.3) !important;
-        }
-
-        .highlighted-card :global(.group:hover) {
-          background-color: #22b1a3 !important;
-          box-shadow: 0 10px 15px -3px rgba(34, 177, 163, 0.35), 0 4px 6px -4px rgba(34, 177, 163, 0.3) !important;
-        }
-
-        .highlighted-card :global(.group .group-hover\:bg-white) {
-          background-color: #ffffff !important;
-        }
-
-        .highlighted-card :global(.group .group-hover\:text-\[\#22B1A3\]) {
-          color: #22b1a3 !important;
-        }
-
-        .highlighted-card :global(h3.group-hover\:text-white),
-        .highlighted-card :global(p.group-hover\:text-white) {
-          color: #ffffff !important;
-        }
-
-        .highlighted-card :global(.group .group-hover\:text-white) {
-          color: #ffffff !important;
-        }
-      `}</style>
-    </div>
-  );
-}
+    );
+  }

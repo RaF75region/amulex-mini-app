@@ -1,4 +1,4 @@
-export type MenuItemId = 'docs' | 'bonus' | 'info' | 'profile';
+export type MenuItemId = 'menu' | 'docs' | 'home' | 'bonus' | 'profile';
 
 export interface MenuItem {
   id: MenuItemId;

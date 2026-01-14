@@ -116,10 +116,9 @@ export default function ProfilePage() {
   const shouldShowUpgradeButton = !isYearlyPlanSelected;
 
   return (
-    <div className="min-h-screen bg-[#EEF2F7] px-4 pb-32">
-      <div className="mx-auto flex max-w-[480px] flex-col gap-4 pt-6">
-        {/* Header */}
-        <h1 className="text-[26px] font-bold leading-tight text-[#0F172A]">Профиль</h1>
+    <div className="mx-auto flex max-w-[480px] flex-col gap-4">
+      {/* Header */}
+      <h1 className="text-[26px] font-bold leading-tight text-[#0F172A]">Профиль</h1>
 
         {/* Top Section */}
         <div className="flex gap-3">
@@ -193,6 +192,5 @@ export default function ProfilePage() {
           </div>
         </section>
       </div>
-    </div>
   );
 }

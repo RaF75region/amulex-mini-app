@@ -146,12 +146,10 @@ export default function BonusPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#E9EBEF] pb-28 px-4">
-      <div className="max-w-[768px] mx-auto pt-8 space-y-6">
-        <h1 className="text-4xl font-bold text-gray-900">Бонусы</h1>
-        <div className="grid grid-cols-2 gap-4">
-          {cards.map(renderCard)}
-        </div>
+    <div className="max-w-[768px] mx-auto space-y-6">
+      <h1 className="text-4xl font-bold text-gray-900">Бонусы</h1>
+      <div className="grid grid-cols-2 gap-4">
+        {cards.map(renderCard)}
       </div>
     </div>
   );
