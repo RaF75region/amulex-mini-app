@@ -19,12 +19,30 @@ interface UserProfile {
   countQueryByFree: number;
 }
 
+// Mock data for local testing
+const MOCK_PROFILE: UserProfile = {
+  telegramId: '123456789',
+  username: 'testuser',
+  isPaid: false,
+  paymentId: null,
+  dateStart: null,
+  dateEnd: null,
+  createdAt: new Date().toISOString(),
+  purchasesId: null,
+  purchaseRateId: null,
+  typeAi: null,
+  countQueryByFree: 5,
+};
+
 export default function ProfilePage() {
   const { user, initData, isReady, webApp } = useTelegram();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedRateId, setSelectedRateId] = useState<string | null>(null);
+
+  // Enable local testing mode
+  const isLocalTesting = typeof window !== 'undefined' && !window.Telegram?.WebApp?.initData;
 
   const openExternalLink = (url: string) => {
     if (typeof window === 'undefined') {
@@ -54,6 +72,13 @@ export default function ProfilePage() {
 
   useEffect(() => {
     async function fetchProfile() {
+      // Use mock data for local testing
+      if (isLocalTesting) {
+        setProfile(MOCK_PROFILE);
+        setLoading(false);
+        return;
+      }
+
       if (!isReady || !user?.id) {
         setLoading(false);
         return;
@@ -76,14 +101,14 @@ export default function ProfilePage() {
     }
 
     fetchProfile();
-  }, [isReady, user?.id]);
+  }, [isReady, user?.id, isLocalTesting]);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#EEF2F7] px-4 pb-32">
+      <div className="min-h-screen bg-[#F3F5F9] pb-32">
         <div className="mx-auto flex max-w-[480px] flex-col items-center justify-center pt-20">
-          <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#22B1A3] border-t-transparent"></div>
-          <p className="mt-4 text-[14px] text-[#6B7280]">Загрузка профиля...</p>
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#8AA6F4] border-t-transparent"></div>
+          <p className="mt-4 text-[14px] text-[#8E939D]">Загрузка профиля...</p>
         </div>
       </div>
     );
@@ -91,15 +116,15 @@ export default function ProfilePage() {
 
   if (error || !profile) {
     return (
-      <div className="min-h-screen bg-[#EEF2F7] px-4 pb-32">
+      <div className="min-h-screen bg-[#F3F5F9] pb-32">
         <div className="mx-auto flex max-w-[480px] flex-col items-center justify-center pt-20">
-          <div className="rounded-[26px] bg-white p-6 text-center shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
-            <p className="text-[16px] font-semibold text-[#0F172A]">
+          <div className="rounded-[16px] bg-white p-6 text-center shadow-[0_2px_16px_rgba(0,0,0,0.06)]">
+            <p className="text-[16px] font-semibold text-[#212121]">
               {error || 'Не удалось загрузить профиль'}
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="mt-4 text-[14px] text-[#22B1A3] hover:underline"
+              className="mt-4 text-[14px] text-[#8AA6F4] hover:underline"
             >
               Попробовать снова
             </button>
@@ -112,34 +137,47 @@ export default function ProfilePage() {
   const messagesLeft = profile.countQueryByFree || 0;
   const isPaidUser = profile.isPaid;
   const tariffName = isPaidUser ? 'Premium тариф' : 'Бесплатный тариф';
+  const messagesText = isPaidUser ? 'Безлимитные сообщения' : `${messagesLeft} сообщений в день`;
   const isYearlyPlanSelected = profile.purchaseRateId === 4024;
   const shouldShowUpgradeButton = !isYearlyPlanSelected;
 
   return (
-    <div className="mx-auto flex max-w-[480px] flex-col gap-4">
-      {/* Header */}
-      <h1 className="text-[26px] font-bold leading-tight text-[#0F172A]">Профиль</h1>
+    <div className="min-h-screen bg-[#F3F5F9]">
+      <div className="mx-auto flex max-w-[480px] flex-col gap-[12px]">
+        {/* Header */}
+        <h1 className="text-[28px] font-semibold leading-[1.1] text-[#212121]">Профиль</h1>
 
         {/* Top Section */}
-        <div className="flex gap-3">
+        <div className="flex gap-[12px]">
           {/* Subscription Card */}
-          <div className="flex flex-1 flex-col justify-between rounded-[26px] bg-gradient-to-br from-[#22B1A3] to-[#1a8e82] p-4 shadow-[0_12px_32px_rgba(34,177,163,0.25)]">
-            <div className="mb-2.5 inline-flex w-fit items-center rounded-[12px] bg-white/20 px-2.5 py-1 text-[11px] font-semibold text-white">
-              {tariffName}
+          <div 
+            className="flex flex-1 flex-col gap-[12px] h-[149px] rounded-[16px] p-[16px]" 
+            style={{ background: 'linear-gradient(129.67deg, #6989E3 12.3%, #8AA6F4 64.82%)' }}
+          >
+            <div className="flex flex-col gap-[4px] w-full">
+              <div className="flex flex-col gap-[8px] w-full">
+                <div className="inline-flex w-fit items-center rounded-[80px] bg-[rgba(255,255,255,0.12)] px-[8px] py-[4px]">
+                  <span className="text-[10px] font-normal leading-[1.3] text-white">
+                    {tariffName}
+                  </span>
+                </div>
+                <h2 className="text-[16px] font-semibold leading-[1.2] text-white">
+                  Моя подписка
+                </h2>
+              </div>
+              <p className="text-[10px] font-normal leading-[1.3] text-white">
+                {messagesText}
+              </p>
             </div>
-            <h2 className="mb-1.5 text-[18px] font-bold leading-tight text-white">
-              Моя подписка
-            </h2>
-            <p className="mb-3 text-[12px] leading-tight text-white/90">
-              {isPaidUser ? 'Безлимитные сообщения' : `${messagesLeft} сообщений осталось`}
-            </p>
             {shouldShowUpgradeButton && (
               <Link
                 href="/subscription"
-                className="flex w-full items-center justify-center gap-1.5 rounded-[18px] bg-white px-3 py-2 text-[12px] font-semibold text-[#22B1A3] transition-all hover:bg-white/95"
+                className="flex h-[40px] w-full items-center justify-center gap-[8px] rounded-[12px] bg-white px-[16px]"
               >
-                Улучшить план
-                <ArrowRight className="h-3.5 w-3.5" />
+                <span className="text-[12px] font-semibold leading-[1.3] text-[#8AA6F4]">
+                  Улучшить план
+                </span>
+                <img src="/images/profile/arrow-right.svg" alt="" className="h-[8px] w-[8px]" />
               </Link>
             )}
           </div>
@@ -147,50 +185,57 @@ export default function ProfilePage() {
           {/* Consultation Card */}
           <button
             onClick={() => openExternalLink('https://t.me/AmulexBot')}
-            className="flex flex-1 flex-col items-start justify-between rounded-[26px] bg-white p-4 shadow-[0_8px_24px_rgba(15,23,42,0.06)] transition-all hover:shadow-[0_12px_32px_rgba(15,23,42,0.1)]"
+            className="flex flex-1 flex-col items-start justify-center h-[149px] rounded-[16px] bg-white p-[16px] shadow-[0_2px_16px_rgba(0,0,0,0.06)]"
           >
-            <div className="mb-2 flex h-[40px] w-[40px] items-center justify-center rounded-[12px] bg-[#D7F5F1]">
-              <ArrowUpRight className="h-4 w-4 text-[#22B1A3]" />
-            </div>
-            <div className="text-left">
-              <h3 className="mb-1 text-[15px] font-bold leading-tight text-[#0F172A]">
-                Консультация
-              </h3>
-              <p className="text-[11px] leading-[1.3] text-[#6B7280]">
-                Получить профессиональную консультацию от юриста
-              </p>
+            <div className="flex flex-col items-start justify-between h-full w-full">
+              <div className="h-[32px] w-[32px]">
+                <img src="/images/profile/consultation-icon.svg" alt="" className="h-full w-full" />
+              </div>
+              <div className="flex flex-col gap-[8px] w-full">
+                <h3 className="text-[16px] font-semibold leading-[1.2] text-[#212121]">
+                  Консультация
+                </h3>
+                <p className="text-[10px] font-normal leading-[1.3] text-[#8E939D]">
+                  Получить профессиональную консультацию от юриста
+                </p>
+              </div>
             </div>
           </button>
         </div>
 
         {/* Additional Services Section */}
-        <section className="space-y-2.5">
-          <div className="flex items-center justify-between">
-            <h2 className="text-[17px] font-bold text-[#0F172A]">
+        <div className="flex flex-col gap-[12px] rounded-[16px] bg-white p-[16px] shadow-[0_2px_16px_rgba(0,0,0,0.06)]">
+          <div className="flex flex-col gap-[8px] w-full">
+            <h2 className="text-[16px] font-semibold leading-[1.2] text-[#212121]">
               Дополнительные услуги
             </h2>
+            <p className="text-[10px] font-normal leading-[1.3] text-[#8E939D]">
+              Получить профессиональную консультацию от юриста
+            </p>
           </div>
-          <p className="text-[12px] leading-[1.4] text-[#6B7280]">
-            Получить профессиональную консультацию от юриста
-          </p>
 
-          <div className="flex gap-2.5">
+          <div className="flex gap-[8px] w-full">
             <button
               onClick={() => openExternalLink('https://amulex.ru/uslugi/russia?botfriend')}
-              className="flex h-[48px] flex-1 items-center justify-center gap-1.5 rounded-[22px] bg-[#22B1A3] text-[13px] font-semibold text-white shadow-[0_8px_24px_rgba(34,177,163,0.25)] transition-all hover:bg-[#1e9b8e]"
+              className="flex flex-1 h-[40px] items-center justify-center gap-[8px] rounded-[12px] bg-[#8AA6F4] px-[16px]"
             >
-              Больше услуг
-              <ArrowRight className="h-3.5 w-3.5" />
+              <span className="text-[12px] font-semibold leading-[1.3] text-white">
+                Больше услуг
+              </span>
+              <img src="/images/profile/arrow-right-white.svg" alt="" className="h-[8px] w-[8px]" />
             </button>
             <button
               onClick={() => openExternalLink('https://t.me/amulex_int')}
-              className="flex h-[48px] flex-1 items-center justify-center gap-1.5 rounded-[22px] bg-white text-[13px] font-semibold text-[#22B1A3] shadow-[0_8px_24px_rgba(15,23,42,0.06)] transition-all hover:bg-gray-50"
+              className="flex flex-1 h-[40px] items-center justify-center gap-[8px] rounded-[12px] bg-[#F3F5F9] px-[16px]"
             >
-              <HelpCircle className="h-4 w-4" />
-              Поддержка
+              <img src="/images/profile/help-icon.svg" alt="" className="h-[12px] w-[12px]" />
+              <span className="text-[12px] font-semibold leading-[1.3] text-[#8AA6F4]">
+                Поддержка
+              </span>
             </button>
           </div>
-        </section>
+        </div>
       </div>
+    </div>
   );
 }
