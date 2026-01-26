@@ -1,4 +1,4 @@
-import { X, CheckCircle2, AlertCircle } from 'lucide-react';
+import { X, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -33,40 +33,40 @@ export function StatusDialog({
     : 'Что-то пошло не так';
 
   const defaultDescription = isSuccess
-    ? 'Рассмотрим его в течении 3-х рабочих дней'
+    ? 'Рассмотрим его в течение 3-х рабочих дней'
     : 'Ваше сообщение не доставлено, попробуйте снова через некоторое время';
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="rounded-[36px] p-8 text-center max-w-[400px]">
-        <DialogClose className="absolute right-6 top-6 text-gray-400" aria-label="Закрыть">
-          <X className="h-5 w-5" />
+      <DialogContent className="rounded-[16px] p-[24px] text-center max-w-[400px]">
+        <DialogClose className="absolute right-[24px] top-[24px] text-[#8e939d] hover:opacity-70" aria-label="Закрыть">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="rotate-[-90deg]">
+            <path d="M2 10L10 2M10 10L2 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
         </DialogClose>
-        <DialogHeader className="space-y-4">
-          <div
-            className={`mx-auto flex h-16 w-16 items-center justify-center rounded-[18px] ${
-              isSuccess ? 'bg-[#00AFA0]/10' : 'bg-red-50'
-            }`}
-          >
+        <DialogHeader className="flex flex-col gap-[16px] items-center">
+          <div className="w-[40px] h-[40px] flex items-center justify-center shrink-0">
             {isSuccess ? (
-              <CheckCircle2 className="h-8 w-8 text-[#00AFA0]" />
+              <img src="/images/bonus/icon-success.svg" alt="" className="w-full h-full" />
             ) : (
-              <AlertCircle className="h-8 w-8 text-red-500" />
+              <div className="w-full h-full flex items-center justify-center rounded-[8px] bg-red-50">
+                <AlertCircle className="w-6 h-6 text-red-500" />
+              </div>
             )}
           </div>
-          <DialogTitle className="text-[17px] font-semibold text-gray-900 leading-tight">
-            {title || defaultTitle}
-          </DialogTitle>
-          <DialogDescription className="text-[12px] leading-[150%] text-gray-500">
-            {description || defaultDescription}
-          </DialogDescription>
+          <div className="flex flex-col gap-[8px] items-center w-full">
+            <DialogTitle className="text-[16px] font-semibold text-[#212121] leading-[1.2] w-full">
+              {title || defaultTitle}
+            </DialogTitle>
+            <DialogDescription className="text-[10px] font-normal leading-[1.3] text-[#8e939d]">
+              {description || defaultDescription}
+            </DialogDescription>
+          </div>
         </DialogHeader>
-        <div className="mt-6 flex justify-center">
+        <div className="mt-[8px] flex justify-center">
           <Button
             variant="ghost"
-            className={`gap-2 px-0 hover:bg-transparent ${
-              isSuccess ? 'text-[#00AFA0]' : 'text-gray-600'
-            }`}
+            className="h-[40px] w-full rounded-[12px] bg-[#f3f5f9] px-[16px] text-[12px] font-semibold text-[#8aa6f4] leading-[1.3] hover:bg-[#e9ebef]"
             onClick={() => onOpenChange(false)}
           >
             {buttonText}

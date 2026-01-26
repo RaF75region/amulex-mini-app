@@ -5,8 +5,18 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   // Optimize images
   images: {
-    domains: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.figma.com',
+        port: '',
+        pathname: '/api/mcp/asset/**',
+      },
+    ],
     unoptimized: false,
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
   // Enable compression

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowUpRight, Bolt, Check, Percent, Smile } from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { BackButton } from '@/components/back-button';
@@ -10,15 +10,15 @@ import { useTelegram } from '@/shared/hooks/use-telegram';
 
 const bonusCards = [
   {
-    icon: Percent,
+    icon: '/images/bonus/icon-discount.svg',
     title: 'Получите скидку',
-    description: 'Заполните форму и мы свяжемся с вами, чтобы активировать скидку в 20 000 ₽ на процедуру банкротства физических лиц',
+    description: 'Заполните форму и мы свяжемся с Вами, чтобы активировать скидку в 20 000 ₽ на процедуру банкротства физических лиц',
   },
   {
-    icon: Smile,
+    icon: '/images/bonus/icon-share.svg',
     title: 'Делитесь выгодой',
     description:
-      'Как только вы или ваш друг начнёте процедуру и произведёте оплату, тот, кто порекомендовал наш сервис, также получит бонус в размере 20 000 ₽',
+      'Как только Вы или Ваш друг начнете процедуру и произведете оплату, тот, кто порекомендовал наш сервис, также получит бонус в размере 20 000 ₽',
   },
 ];
 
@@ -112,67 +112,69 @@ export default function GiftBonusPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#E9EBEF] px-4 pb-32">
-      <div className="mx-auto flex max-w-[480px] flex-col gap-5 pt-6">
-        <header className="flex flex-wrap items-end gap-2">
-          <p className="text-[24px] font-semibold text-[#0F1F2D] leading-none">Дарим</p>
-          <p className="text-[32px] font-semibold text-[#22B1A3] leading-none">40 000 ₽</p>
+    <div className="bg-[#F3F5F9] px-4 pt-4 pb-4">
+      <div className="mx-auto flex max-w-[480px] flex-col gap-3">
+        <header className="flex flex-wrap items-baseline gap-1">
+          <p className="text-[28px] font-semibold text-[#212121] leading-[1.1]">Дарим</p>
+          <p className="text-[28px] font-semibold text-[#8AA6F4] leading-[1.1]">40 000 ₽</p>
         </header>
 
-        <section className="grid auto-rows-fr grid-cols-2 gap-3">
-          {bonusCards.map(({ icon: Icon, title, description }) => (
-            <div key={title} className="flex h-full flex-col rounded-[28px] bg-white p-4 shadow-[0_12px_28px_rgba(15,23,42,0.08)]">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[16px] bg-[#E6F5F2]">
-                <Icon className="h-4 w-4 text-[#22B1A3]" />
+        <section className="flex flex-col gap-4">
+          <div className="grid grid-cols-2 gap-3">
+            {bonusCards.map(({ icon, title, description }) => (
+              <div key={title} className="flex h-full flex-col rounded-[16px] bg-white p-4 shadow-[0_2px_16px_rgba(0,0,0,0.06)]">
+                <div className="mb-2 h-8 w-8">
+                  <img src={icon} alt="" className="w-full h-full" />
+                </div>
+                <p className="text-[12px] font-medium text-[#212121] leading-[1.2]">{title}</p>
+                <p className="mt-1 text-[10px] leading-[1.3] text-[#8E939D]">{description}</p>
               </div>
-              <p className="text-sm font-semibold text-[#0F1F2D]">{title}</p>
-              <p className="mt-2 text-[11px] leading-[150%] text-[#52606D]">{description}</p>
-            </div>
-          ))}
-        </section>
-
-        <section className="rounded-[32px] bg-[#22B1A3] p-5 text-white shadow-[0_20px_48px_rgba(3,155,142,0.35)]">
-          <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[16px] bg-white/15">
-            <Bolt className="h-4 w-4" />
+            ))}
           </div>
-          <p className="text-base font-semibold">Выгодное сотрудничество</p>
-          <p className="mt-2 text-xs leading-[150%] text-white/85">
-            Вы оба выигрываете! Экономьте на услугах и радуйте своих друзей возможностью получить выгоду. Присоединяйтесь к нашей реферальной программе и наслаждайтесь преимуществами вместе.
-          </p>
+
+          <div className="rounded-[16px] p-4 text-white shadow-[0_2px_16px_rgba(0,0,0,0.06)]" style={{ background: 'linear-gradient(150.99deg, #6989E3 12.3%, #8AA6F4 64.82%)' }}>
+            <div className="mb-2 h-8 w-8">
+              <img src="/images/bonus/icon-cooperation.svg" alt="" className="w-full h-full" />
+            </div>
+            <p className="text-[12px] font-medium leading-[1.2]">Выгодное сотрудничество</p>
+            <p className="mt-1 text-[10px] leading-[1.3]">
+              Вы оба выигрываете! Экономьте на услугах и радуйте своих друзей возможностью получить выгоду. Присоединяйтесь к нашей реферальной программе и наслаждайтесь преимуществами вместе
+            </p>
+          </div>
         </section>
 
-        <section className="rounded-[32px] bg-white p-5 shadow-[0_20px_48px_rgba(15,23,42,0.08)]">
-          <p className="text-lg font-semibold text-[#0F1F2D]">Введите контактные данные, и мы свяжемся с вами</p>
-          <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+        <section className="rounded-[16px] bg-white p-4 shadow-[0_2px_16px_rgba(0,0,0,0.06)]">
+          <p className="text-[16px] font-semibold text-[#212121] leading-[1.2]">Введите свои контактные данные, и мы свяжемся с Вами</p>
+          <form onSubmit={handleSubmit} className="mt-4 space-y-2">
             <Input
               name="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="Имя"
-              className="h-12 rounded-[22px] border border-transparent bg-[#F5F7FA] px-4 text-sm text-[#0F1F2D] placeholder:text-[#98A2B3] focus:border-[#22B1A3] focus:ring-0"
+              className="h-10 rounded-[12px] border border-[#E9EBEF] bg-white px-4 text-[10px] text-[#212121] placeholder:text-[#8E939D] focus:border-[#8AA6F4] focus:ring-0"
             />
             <Input
               name="phone"
               value={formData.phone}
               onChange={handlePhoneChange}
-              placeholder="+7 (___) ___-__-__"
-              className="h-12 rounded-[22px] border border-transparent bg-[#F5F7FA] px-4 text-sm text-[#0F1F2D] placeholder:text-[#98A2B3] focus:border-[#22B1A3] focus:ring-0"
+              placeholder="+7 ___ ___-__-__"
+              className="h-10 rounded-[12px] border border-[#E9EBEF] bg-white px-4 text-[10px] text-[#212121] placeholder:text-[#8E939D] focus:border-[#8AA6F4] focus:ring-0"
             />
 
-            <label className="flex cursor-pointer items-start gap-2 text-[11px] leading-[150%] text-[#52606D]">
+            <label className="flex cursor-pointer items-center gap-2 text-[10px] leading-[1.3] text-[#8E939D]">
               <button
                 type="button"
                 onClick={() => setConsent((prev) => !prev)}
-                className="mt-[2px] flex h-5 w-5 items-center justify-center rounded-md border border-[#D0D5DD] bg-white text-[#22B1A3]"
+                className="flex h-4 w-4 items-center justify-center rounded-sm border border-[#E9EBEF] bg-white flex-shrink-0"
                 aria-pressed={consent}
               >
-                {consent && <Check className="h-3 w-3" strokeWidth={3} />}
+                {consent && <img src="/images/bonus/checkbox-checked.svg" alt="" className="w-full h-full" />}
               </button>
               <span>
                 Согласен на обработку{' '}
                 <button
                   type="button"
-                  className="text-[#22B1A3] underline"
+                  className="text-[#8AA6F4]"
                   onClick={() => window?.open?.('/docs/privacy', '_blank')}
                 >
                   персональных данных
@@ -180,20 +182,19 @@ export default function GiftBonusPage() {
               </span>
             </label>
 
-            {error && <p className="text-[11px] text-red-500">{error}</p>}
+            {error && <p className="text-[10px] text-red-500">{error}</p>}
 
             <Button
               type="submit"
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-[22px] bg-[#22B1A3] text-sm font-semibold text-white hover:bg-[#1b8c80]"
+              className="mt-2 flex h-10 w-full items-center justify-center gap-2 rounded-[12px] bg-[#8AA6F4] text-[12px] font-semibold text-white hover:bg-[#7899F0] leading-[1.3]"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Отправляем…' : 'Получить бонусное предложение'}
-              {!isSubmitting && <ArrowUpRight className="h-4 w-4" />}
             </Button>
           </form>
         </section>
 
-        <div className="flex justify-center pt-1">
+        <div className="flex justify-center">
           <BackButton href="/bonus" />
         </div>
       </div>
@@ -202,8 +203,8 @@ export default function GiftBonusPage() {
         open={showSuccessDialog}
         onOpenChange={setShowSuccessDialog}
         type="success"
-        title="Заявка отправлена"
-        description="Мы скоро свяжемся с вами для уточнения деталей."
+        title="Ура! Вы получили премиум-доступ"
+        description=""
       />
     </div>
   );

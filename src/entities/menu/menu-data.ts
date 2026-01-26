@@ -6,7 +6,13 @@ export const menuItems: MenuItem[] = [
     id: 'menu',
     label: 'Меню',
     icon: DocsIcon,
-    route: '/docs',
+    route: '/marketplace',
+  },
+  {
+    id: 'marketplace',
+    label: 'Маркетплейс',
+    icon: DocsIcon,
+    route: '/marketplace',
   },
   {
     id: 'docs',

@@ -24,7 +24,7 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
         >
             <div className="flex items-start justify-between w-full h-full relative">
                 <div className={cn("flex flex-col gap-4 flex-1 h-full", showIllustration && "max-w-[calc(100%-130px)]")}>
-                    <div className="w-12 h-12 bg-[#22B1A3] group-hover:bg-white rounded-full flex items-center justify-center text-white group-hover:text-[#22B1A3] transition-colors duration-200">
+                    <div className="w-12 h-12 bg-[#8AA6F4] group-hover:bg-white rounded-full flex items-center justify-center text-white group-hover:text-[#22B1A3] transition-colors duration-200">
                         <ArrowIcon className="w-5 h-5" />
                     </div>
 
