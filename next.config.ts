@@ -3,6 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Enable standalone output for Docker optimization
   output: 'standalone',
+  
+  // Exclude Storybook files from build
+  turbopack: {
+    rules: {
+      '*.stories.{ts,tsx,js,jsx}': {
+        loaders: ['ignore-loader'],
+      },
+    },
+  },
+  
   // Optimize images
   images: {
     remotePatterns: [

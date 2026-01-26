@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 
@@ -16,7 +16,7 @@ const subscriptionPlans = [
   { duration: '1 год', price: '999 ₽', rateId: 4024 },
 ];
 
-export default function SubscriptionPage() {
+function SubscriptionContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   // In test mode, default to 'free', otherwise get from real data
@@ -300,5 +300,17 @@ export default function SubscriptionPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function SubscriptionPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#F3F5F9] flex items-center justify-center">
+        <p className="text-[#8E939D]">Загрузка...</p>
+      </div>
+    }>
+      <SubscriptionContent />
+    </Suspense>
   );
 }
