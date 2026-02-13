@@ -70,20 +70,20 @@ export default function LegalAnalysisPage() {
           </CardHeader>
         </Card>
 
-        <Card className="bg-white">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-[20px] text-gray-900">Что входит в отчет:</CardTitle>
+        <Card className="rounded-[24px] border-0 bg-[#F7F8FA] shadow-none">
+          <CardHeader className="pb-1">
+            <CardTitle className="text-[16px] font-semibold leading-[1.2] text-[#212121]">Что входит в отчет:</CardTitle>
           </CardHeader>
-          <CardContent className={isSmallScreen ? 'flex flex-col gap-3' : 'grid grid-cols-3 gap-3'}>
+          <CardContent className="grid grid-cols-3 gap-[10px] pt-[6px]">
             {featureItems.map(({ title, icon: Icon }) => (
               <div
                 key={title}
-                className="rounded-[28px] bg-[#F3F9F8] p-4 flex flex-col items-start gap-3"
+                className="flex flex-col items-start gap-[8px]"
               >
-                <div className="h-12 w-12 rounded-2xl bg-[#EEF2FD] flex items-center justify-center">
-                  <Icon className="h-6 w-6 text-[#8AA6F4]" />
+                <div className="h-[48px] w-[48px] rounded-[14px] bg-[#EEF2FD] flex items-center justify-center">
+                  <Icon className="h-[20px] w-[20px] text-[#8AA6F4]" />
                 </div>
-                <p className="text-[13px] leading-[140%] text-gray-700 text-left">{title}</p>
+                <p className="text-[10px] font-normal leading-[1.3] text-[#8E939D] text-left">{title}</p>
               </div>
             ))}
           </CardContent>

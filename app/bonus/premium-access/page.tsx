@@ -108,11 +108,11 @@ export default function PremiumAccessPage() {
               Мы хотим, чтобы юридическая помощь была доступна каждому. Серверы и команда стоят денег, но есть ценность, которую мы любим — это люди, которым мы помогаем. Добавь Твоего Друга Юриста в чат Telegram и получи бесплатный доступ к консультациям на год!
             </p>
           </div>
-          <div className="absolute right-[-10px] top-[-18px] w-[220px] h-[225px]">
+          <div className="pointer-events-none absolute right-[-124px] top-1/2 -translate-y-1/2 w-[250px] h-[250px]">
             <img
               src="/images/star-premium.png"
               alt=""
-              className="w-[179px] h-[186px] transform rotate-[-165deg] scale-y-[-1]"
+              className="w-full h-full object-contain grayscale transform rotate-[-165deg] scale-y-[-1]"
             />
           </div>
         </section>

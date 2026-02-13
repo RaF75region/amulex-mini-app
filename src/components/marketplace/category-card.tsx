@@ -66,6 +66,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick })
             style={{
               objectFit: 'contain',
               transform: category.id === 'debts' ? 'scaleY(-1)' : 'none',
+              filter: category.id === 'court' ? 'grayscale(1)' : 'none',
             }}
           />
         </Box>

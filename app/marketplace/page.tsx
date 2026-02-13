@@ -1,15 +1,17 @@
 'use client';
 
-import React from 'react';
-import { Box, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Modal, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { Lock, X } from 'lucide-react';
 import { CategoryCard } from '@/components/marketplace/category-card';
 import { LawyerCard } from '@/components/marketplace/lawyer-card';
 import { categories, lawyers } from '@/shared/constants/marketplace-data';
 
 export default function MarketplacePage() {
   const router = useRouter();
+  const [marketplaceModalOpen, setMarketplaceModalOpen] = useState(true);
 
   const handleCategoryClick = (categoryId: string) => {
     console.log('Category clicked:', categoryId);
@@ -24,25 +26,26 @@ export default function MarketplacePage() {
   };
 
   return (
-    <Box
-      sx={{
-        background: '#FFFFFF',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        borderRadius: '16px',
-        position: 'relative',
-      }}
-    >
-      {/* Header */}
+    <>
       <Box
         sx={{
-          padding: '24px',
+          background: '#FFFFFF',
+          minHeight: '100vh',
           display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
+          flexDirection: 'column',
+          borderRadius: '16px',
+          position: 'relative',
         }}
       >
+        {/* Header */}
+        <Box
+          sx={{
+            padding: '24px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}
+        >
         {/* Menu Icon */}
         <Box
           onClick={handleMenuClick}
@@ -224,6 +227,127 @@ export default function MarketplacePage() {
           </Box>
         </Box>
       </Box>
-    </Box>
+      </Box>
+
+      <Modal
+        open={marketplaceModalOpen}
+        onClose={() => setMarketplaceModalOpen(false)}
+        aria-labelledby="marketplace-unavailable-title"
+      >
+        <Box
+          sx={{
+            position: 'fixed',
+            inset: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            px: '24px',
+            bgcolor: 'rgba(0, 0, 0, 0.4)',
+          }}
+        >
+          <Box
+            sx={{
+              width: '100%',
+              maxWidth: '520px',
+              borderRadius: '24px',
+              bgcolor: '#FFFFFF',
+              px: '24px',
+              pt: '24px',
+              pb: '32px',
+              position: 'relative',
+            }}
+          >
+            <Box
+              component="button"
+              onClick={() => setMarketplaceModalOpen(false)}
+              sx={{
+                position: 'absolute',
+                top: '24px',
+                right: '24px',
+                border: 'none',
+                background: 'transparent',
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#B6BBC5',
+                cursor: 'pointer',
+              }}
+            >
+              <X size={24} />
+            </Box>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <Box
+                sx={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '16px',
+                  bgcolor: '#EEF2FD',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#8AA6F4',
+                  mb: '20px',
+                }}
+              >
+                <Lock size={28} />
+              </Box>
+
+              <Typography
+                id="marketplace-unavailable-title"
+                sx={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '16px',
+                  fontWeight: 600,
+                  lineHeight: '1.2',
+                  color: '#212121',
+                  textAlign: 'center',
+                }}
+              >
+                Маркетплейс пока недоступен
+              </Typography>
+
+              <Typography
+                sx={{
+                  mt: '12px',
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '10px',
+                  fontWeight: 400,
+                  lineHeight: '1.3',
+                  color: '#8E939D',
+                  textAlign: 'center',
+                  maxWidth: '340px',
+                }}
+              >
+                Следите за обновлениями, совсем скоро здесь появится новый раздел
+              </Typography>
+
+              <Box
+                component="button"
+                onClick={() => router.push('/home-new')}
+                sx={{
+                  mt: '28px',
+                  width: '100%',
+                  maxWidth: '420px',
+                  height: '40px',
+                  borderRadius: '16px',
+                  border: 'none',
+                  bgcolor: '#F3F5F9',
+                  color: '#8AA6F4',
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  lineHeight: '1.3',
+                  cursor: 'pointer',
+                }}
+              >
+                Вернуться назад
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Modal>
+    </>
   );
 }

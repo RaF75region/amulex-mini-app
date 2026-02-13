@@ -7,8 +7,8 @@ import { CreatorsCard } from '@/components/home/creators-card';
 import { PublicOfferCard } from '@/components/home/public-offer-card';
 import { cn } from '@/lib/utils';
 
-const hammerImage = '/assets/hammer.png';
-const messageImage = '/assets/message-bubble.svg';
+const hammerImage = '/assets/hammer-figma.png';
+const messageImage = '/assets/message-bubble-figma.png';
 const unionIcon = '/assets/union-white.svg';
 
 const iconArrow = '/assets/icon-arrow-circle.svg';
@@ -142,11 +142,10 @@ export default function HomePage() {
                   className="absolute right-[-10px] top-[-15px] w-[80px] h-[80px] pointer-events-none"
                   data-name="Сообщение"
                   data-node-id="426:9781"
-                  style={{ mixBlendMode: 'multiply', opacity: 0.9 }}
                 >
                   <img
                     alt=""
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain grayscale"
                     src={messageImage}
                   />
                 </div>

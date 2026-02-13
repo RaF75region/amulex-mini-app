@@ -39,7 +39,7 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
                 </div>
 
                 {showIllustration && (
-                    <div className="absolute bottom-0 right-0">
+                    <div className="absolute -bottom-4 right-0">
                         <Image
                             className='svg-document'
                             src="/document.svg"

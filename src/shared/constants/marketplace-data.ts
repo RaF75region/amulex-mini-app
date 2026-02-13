@@ -5,13 +5,13 @@ export const categories: Category[] = [
     id: 'svo',
     label: 'СВО',
     gradient: 'linear-gradient(180deg, #BCCEFF 0%, #E1E9FF 100%)',
-    icon: '/images/marketplace/svo-soldier.png',
+    icon: '/images/marketplace/svo-image.png',
   },
   {
     id: 'divorce',
     label: 'Развод',
     gradient: 'linear-gradient(180deg, #FFD4E4 0%, #FFE4EE 100%)',
-    icon: '/images/marketplace/divorce-person.png',
+    icon: '/images/marketplace/divorce-image.png',
   },
   {
     id: 'court',

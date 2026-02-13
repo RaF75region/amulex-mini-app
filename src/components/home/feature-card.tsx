@@ -50,7 +50,11 @@ export function FeatureCard({
           data-name="Молоток"
           data-node-id={overlayNodeId}
         >
-          <img alt="" className="absolute h-[127.87%] left-[-5.2%] max-w-none top-[-12.49%] w-[111.01%]" src={overlayImage} />
+          <img
+            alt=""
+            className="absolute h-[127.87%] left-[-5.2%] max-w-none top-[-12.49%] w-[111.01%] grayscale"
+            src={overlayImage}
+          />
         </div>
       )}
       <div className="relative w-[32px] h-[32px] flex-shrink-0" data-name="Иконка" data-node-id={iconNodeId}>

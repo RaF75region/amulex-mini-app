@@ -150,8 +150,8 @@ export default function ProfilePage() {
         {/* Top Section */}
         <div className="flex gap-[12px]">
           {/* Subscription Card */}
-          <div 
-            className="flex flex-1 flex-col gap-[12px] h-[149px] rounded-[16px] p-[16px]" 
+          <div
+            className="flex flex-1 flex-col gap-[12px] h-[149px] rounded-[16px] p-[16px]"
             style={{ background: 'linear-gradient(129.67deg, #6989E3 12.3%, #8AA6F4 64.82%)' }}
           >
             <div className="flex flex-col gap-[4px] w-full">
@@ -191,7 +191,7 @@ export default function ProfilePage() {
               <div className="h-[32px] w-[32px]">
                 <img src="/images/profile/consultation-icon.svg" alt="" className="h-full w-full" />
               </div>
-              <div className="flex flex-col gap-[8px] w-full">
+              <div className="flex flex-col gap-[8px] w-full text-left">
                 <h3 className="text-[16px] font-semibold leading-[1.2] text-[#212121]">
                   Консультация
                 </h3>
