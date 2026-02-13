@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Box, Modal, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Lock, X } from 'lucide-react';
+import { Lock } from 'lucide-react';
 import { CategoryCard } from '@/components/marketplace/category-card';
 import { LawyerCard } from '@/components/marketplace/lawyer-card';
 import { categories, lawyers } from '@/shared/constants/marketplace-data';
@@ -231,7 +231,7 @@ export default function MarketplacePage() {
 
       <Modal
         open={marketplaceModalOpen}
-        onClose={() => setMarketplaceModalOpen(false)}
+        disableEscapeKeyDown
         aria-labelledby="marketplace-unavailable-title"
       >
         <Box
@@ -257,26 +257,6 @@ export default function MarketplacePage() {
               position: 'relative',
             }}
           >
-            <Box
-              component="button"
-              onClick={() => setMarketplaceModalOpen(false)}
-              sx={{
-                position: 'absolute',
-                top: '24px',
-                right: '24px',
-                border: 'none',
-                background: 'transparent',
-                padding: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#B6BBC5',
-                cursor: 'pointer',
-              }}
-            >
-              <X size={24} />
-            </Box>
-
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <Box
                 sx={{
