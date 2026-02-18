@@ -72,6 +72,7 @@ export default function BonusPage() {
     const baseClasses = cn(
       'rounded-[16px] p-[16px] text-left shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8aa6f4] flex flex-col gap-[12px] transition-all duration-200 h-[135px]',
       variant === 'primary' && 'bg-white justify-between',
+      variant === 'primary' && route && 'cursor-pointer hover:shadow-lg',
       variant === 'accent' && 'bg-[#8aa6f4] text-white',
       variant === 'secondary' && 'text-white shadow-none cursor-pointer'
     );

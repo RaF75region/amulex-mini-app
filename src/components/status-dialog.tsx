@@ -1,8 +1,7 @@
-import { X, AlertCircle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -39,11 +38,6 @@ export function StatusDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="rounded-[16px] p-[24px] text-center max-w-[400px]">
-        <DialogClose className="absolute right-[24px] top-[24px] text-[#8e939d] hover:opacity-70" aria-label="Закрыть">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="rotate-[-90deg]">
-            <path d="M2 10L10 2M10 10L2 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        </DialogClose>
         <DialogHeader className="flex flex-col gap-[16px] items-center">
           <div className="w-[40px] h-[40px] flex items-center justify-center shrink-0">
             {isSuccess ? (

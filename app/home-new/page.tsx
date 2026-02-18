@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useRouter } from 'next/navigation';
 import { HeroCard } from '@/components/home/hero-card';
 import { FeatureCard } from '@/components/home/feature-card';
 import { CreatorsCard } from '@/components/home/creators-card';
@@ -19,8 +20,16 @@ const iconChart = '/assets/icon-chart.svg';
 const iconStar = '/assets/icon-star.svg';
 
 export default function HomePage() {
+  const router = useRouter();
+
   const handleRegisterClick = () => {
-    console.log('Register clicked');
+    // Открываем чат с ботом Амулекс
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+      window.Telegram.WebApp.openTelegramLink('https://t.me/AmulexBot');
+    } else {
+      // Fallback для обычного браузера
+      window.open('https://t.me/AmulexBot', '_blank');
+    }
   };
 
   const handleWebsiteClick = () => {
@@ -28,15 +37,30 @@ export default function HomePage() {
   };
 
   const handleContactClick = () => {
-    console.log('Contact clicked');
+    // Открываем Telegram канал Амулекс
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+      window.Telegram.WebApp.openTelegramLink('https://t.me/amulex_ru');
+    } else {
+      // Fallback для обычного браузера
+      window.open('https://t.me/amulex_ru', '_blank');
+    }
   };
 
   const handlePublicOfferClick = () => {
-    console.log('Public offer clicked');
+    // Открываем PDF оферты для скачивания/просмотра
+    const offerUrl = 'https://1d47d82f-rag-test.s3.twcstorage.ru/files/%D0%9E%D1%84%D0%B5%D1%80%D1%82%D0%B0%20%22%D0%A2%D0%B2%D0%BE%D0%B9%20%D0%94%D1%80%D1%83%D0%B3%20%D0%AE%D1%80%D0%B8%D1%81%D1%82%22.pdf';
+    
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+      // В Telegram Mini App используем openLink для внешних URL
+      window.Telegram.WebApp.openLink(offerUrl);
+    } else {
+      // Fallback для обычного браузера
+      window.open(offerUrl, '_blank');
+    }
   };
 
   const handleSuggestionClick = () => {
-    console.log('Suggestion clicked');
+    router.push('/docs/contact-specialist');
   };
 
   return (
@@ -131,7 +155,8 @@ export default function HomePage() {
             </div>
             <div className="flex-1 min-h-[120px]">
               <div
-                className="flex flex-col gap-[12px] items-start p-[16px] rounded-[16px] relative h-full min-h-[120px] overflow-visible"
+                onClick={handleSuggestionClick}
+                className="flex flex-col gap-[12px] items-start p-[16px] rounded-[16px] relative h-full min-h-[120px] overflow-visible cursor-pointer transition-transform active:scale-95"
                 data-name="Карточка"
                 data-node-id="426:9780"
                 style={{
@@ -179,7 +204,7 @@ export default function HomePage() {
           <PublicOfferCard onClick={handlePublicOfferClick} />
 
           {/* Final register button */}
-          <button
+          {/* <button
             onClick={handleRegisterClick}
             className={cn(
               'bg-[#8aa6f4] flex gap-[8px] h-[40px] items-center justify-center px-[16px] rounded-[12px] w-full',
@@ -197,7 +222,7 @@ export default function HomePage() {
             <div className="w-[8px] h-[8px] flex-shrink-0" data-name="Union" data-node-id="426:9809">
               <img alt="" className="block max-w-none w-full h-full" src={unionIcon} />
             </div>
-          </button>
+          </button> */}
         </div>
       </section>
     </main>

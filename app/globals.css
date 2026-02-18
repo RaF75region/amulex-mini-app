@@ -123,10 +123,12 @@
 
 .highlighted-card button {
   background: linear-gradient(153.99deg, rgba(105, 137, 227, 1) 12.3%, rgba(138, 166, 244, 1) 64.82%) !important;
+  cursor: pointer !important;
 }
 
 .highlighted-card button:hover {
   background: linear-gradient(153.99deg, rgba(105, 137, 227, 1) 12.3%, rgba(138, 166, 244, 1) 64.82%) !important;
+  cursor: pointer !important;
 }
 
 .highlighted-card button .w-12 {

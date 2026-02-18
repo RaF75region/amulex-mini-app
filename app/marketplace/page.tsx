@@ -232,6 +232,7 @@ export default function MarketplacePage() {
       <Modal
         open={marketplaceModalOpen}
         disableEscapeKeyDown
+        onClose={() => {}} // Блокируем закрытие кликом вне диалога
         aria-labelledby="marketplace-unavailable-title"
       >
         <Box

@@ -20,19 +20,19 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
     return (
         <button
             onClick={onClick}
-            className="group bg-white hover:bg-[#22B1A3] rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-200 text-left w-full h-full relative overflow-visible"
+            className="bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-shadow duration-200 text-left w-full h-full relative overflow-visible cursor-pointer"
         >
             <div className="flex items-start justify-between w-full h-full relative">
                 <div className={cn("flex flex-col gap-4 flex-1 h-full", showIllustration && "max-w-[calc(100%-130px)]")}>
-                    <div className="w-12 h-12 bg-[#8AA6F4] group-hover:bg-white rounded-full flex items-center justify-center text-white group-hover:text-[#22B1A3] transition-colors duration-200">
+                    <div className="w-12 h-12 bg-[#8AA6F4] rounded-full flex items-center justify-center text-white">
                         <ArrowIcon className="w-5 h-5" />
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <h3 className="text-lg font-semibold text-gray-900 group-hover:text-white transition-colors duration-200">
+                        <h3 className="text-lg font-semibold text-gray-900">
                             {title}
                         </h3>
-                        <p className="text-[10px] font-normal leading-[130%] text-gray-500 group-hover:text-white transition-colors duration-200">
+                        <p className="text-[10px] font-normal leading-[130%] text-gray-500">
                             {description}
                         </p>
                     </div>

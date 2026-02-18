@@ -66,7 +66,7 @@ export function HeroCard({ onRegisterClick }: HeroCardProps) {
         <StatBlock value="10К+" label="Пользователей" valueNodeId="426:9724" labelNodeId="426:9725" />
         <StatBlock value="№1" label="Сервис в РФ" valueNodeId="426:9727" labelNodeId="426:9728" />
         <StatBlock
-          value="95%"
+          value="96%"
           label="Довольных клиентов"
           valueNodeId="426:9730"
           labelNodeId="426:9731"
@@ -85,7 +85,7 @@ export function HeroCard({ onRegisterClick }: HeroCardProps) {
           className="flex flex-col font-semibold justify-center text-[#8aa6f4] text-[12px] leading-[1.3] whitespace-nowrap"
           data-node-id="426:9733"
         >
-          Зарегистрироваться сейчас
+          Начать общение
         </div>
         <div className="w-[8px] h-[8px] flex-shrink-0" data-name="Union" data-node-id="426:9734">
           <img alt="" className="block max-w-none w-full h-full" src={unionIcon} />

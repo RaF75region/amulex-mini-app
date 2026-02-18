@@ -174,7 +174,7 @@ export default function ProfilePage() {
                 href="/subscription"
                 className="flex h-[40px] w-full items-center justify-center gap-[8px] rounded-[12px] bg-white px-[16px]"
               >
-                <span className="text-[12px] font-semibold leading-[1.3] text-[#8AA6F4]">
+                <span className="text-[12px] font-semibold leading-[1.3] text-[#8AA6F4] whitespace-nowrap">
                   Улучшить план
                 </span>
                 <img src="/images/profile/arrow-right.svg" alt="" className="h-[8px] w-[8px]" />
@@ -196,7 +196,7 @@ export default function ProfilePage() {
                   Консультация
                 </h3>
                 <p className="text-[10px] font-normal leading-[1.3] text-[#8E939D]">
-                  Получить профессиональную консультацию от юриста
+                  От юридической компании №1 в России
                 </p>
               </div>
             </div>
@@ -210,7 +210,7 @@ export default function ProfilePage() {
               Дополнительные услуги
             </h2>
             <p className="text-[10px] font-normal leading-[1.3] text-[#8E939D]">
-              Получить профессиональную консультацию от юриста
+              От юридической компании №1 в России
             </p>
           </div>
 
