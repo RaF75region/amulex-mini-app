@@ -49,7 +49,7 @@ export default function HomePage() {
   const handlePublicOfferClick = () => {
     // Открываем PDF оферты для скачивания/просмотра
     const offerUrl = 'https://1d47d82f-rag-test.s3.twcstorage.ru/files/%D0%9E%D1%84%D0%B5%D1%80%D1%82%D0%B0%20%22%D0%A2%D0%B2%D0%BE%D0%B9%20%D0%94%D1%80%D1%83%D0%B3%20%D0%AE%D1%80%D0%B8%D1%81%D1%82%22.pdf';
-    
+
     if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
       // В Telegram Mini App используем openLink для внешних URL
       window.Telegram.WebApp.openLink(offerUrl);
@@ -61,6 +61,10 @@ export default function HomePage() {
 
   const handleSuggestionClick = () => {
     router.push('/docs/contact-specialist');
+  };
+
+  const handleMarketplaceClick = () => {
+    router.push('/marketplace');
   };
 
   return (
@@ -95,6 +99,7 @@ export default function HomePage() {
               iconNodeId="426:9742"
               overlayImage={hammerImage}
               overlayNodeId="426:9740"
+              onClick={handleMarketplaceClick}
             />
           </div>
 
@@ -108,7 +113,7 @@ export default function HomePage() {
             />
             <FeatureCard
               icon={iconDocument}
-              description="Анализ документов\n(PDF, фото)"
+              description="Анализ документов (PDF, фото)"
               nodeId="426:9754"
               iconNodeId="426:9756"
             />

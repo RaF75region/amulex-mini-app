@@ -72,7 +72,7 @@ export function HeroCard({ onRegisterClick }: HeroCardProps) {
           labelNodeId="426:9731"
         />
       </div>
-      <button
+      {/* <button
         onClick={onRegisterClick}
         className={cn(
           'bg-white flex gap-[8px] h-[40px] items-center justify-center px-[16px] rounded-[12px] w-full',
@@ -90,7 +90,7 @@ export function HeroCard({ onRegisterClick }: HeroCardProps) {
         <div className="w-[8px] h-[8px] flex-shrink-0" data-name="Union" data-node-id="426:9734">
           <img alt="" className="block max-w-none w-full h-full" src={unionIcon} />
         </div>
-      </button>
+      </button> */}
     </div>
   );
 }

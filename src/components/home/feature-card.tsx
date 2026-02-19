@@ -28,6 +28,7 @@ export function FeatureCard({
 }: FeatureCardProps) {
   const isGradient = variant === 'gradient';
   const isPrimary = variant === 'primary';
+  const Component = onClick ? 'button' : 'div';
 
   const cardClasses = cn(
     'relative flex flex-col gap-[8px] items-start justify-center p-[16px] rounded-[16px] flex-1 self-stretch',
@@ -36,14 +37,21 @@ export function FeatureCard({
     isPrimary &&
       'bg-gradient-to-br from-[#6989e3] via-[#8aa6f4] to-[#8aa6f4]',
     !isGradient && !isPrimary && 'bg-white shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]',
-    onClick && 'cursor-pointer transition-transform active:scale-95'
+    onClick &&
+      'cursor-pointer text-left transition-all duration-200 ease-out hover:-translate-y-px hover:brightness-95 active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22B1A3]/40 focus-visible:ring-offset-2'
   );
 
   const textColor = isGradient || isPrimary ? 'text-white' : 'text-[#8e939d]';
   const titleColor = isGradient || isPrimary ? 'text-white' : 'text-[#212121]';
 
   return (
-    <div className={cardClasses} data-name="Карточка" data-node-id={nodeId} onClick={onClick}>
+    <Component
+      className={cardClasses}
+      data-name="Карточка"
+      data-node-id={nodeId}
+      onClick={onClick}
+      type={Component === 'button' ? 'button' : undefined}
+    >
       {overlayImage && overlayNodeId && (
         <div
           className="absolute right-0 top-[-17px] w-[140px] h-[121px] pointer-events-none overflow-hidden"
@@ -74,6 +82,6 @@ export function FeatureCard({
           ))}
         </div>
       </div>
-    </div>
+    </Component>
   );
 }

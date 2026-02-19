@@ -48,7 +48,13 @@ export default function LegalAnalysisPage() {
   };
 
   const handlePreview = () => {
-    console.log('Посмотреть пример отчета');
+    const previewUrl = 'https://1d47d82f-rag-test.s3.twcstorage.ru/files/%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%20%D1%8E%D1%80%D0%B8%D0%B4%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%BE%D1%82%D1%87%D0%B5%D1%82%D0%B0.pdf';
+
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+      window.Telegram.WebApp.openLink(previewUrl);
+    } else {
+      window.open(previewUrl, '_blank');
+    }
   };
 
   return (

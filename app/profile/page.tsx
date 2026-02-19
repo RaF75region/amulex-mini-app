@@ -196,7 +196,7 @@ export default function ProfilePage() {
                   Консультация
                 </h3>
                 <p className="text-[10px] font-normal leading-[1.3] text-[#8E939D]">
-                  От юридической компании №1 в России
+                  От профессиональных юристов Амулекс
                 </p>
               </div>
             </div>

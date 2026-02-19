@@ -119,6 +119,24 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  button:not(:disabled) {
+    @apply cursor-pointer transition-all duration-200 ease-out;
+  }
+
+  button:not(:disabled):hover {
+    transform: translateY(-1px);
+    filter: brightness(0.97);
+  }
+
+  button:not(:disabled):active {
+    transform: translateY(0) scale(0.98);
+    filter: brightness(0.94);
+  }
+
+  button:focus-visible {
+    @apply outline-none ring-2 ring-[#22B1A3]/40 ring-offset-2;
+  }
 }
 
 .highlighted-card button {
