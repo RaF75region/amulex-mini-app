@@ -216,7 +216,7 @@ export default function ProfilePage() {
 
           <div className="flex gap-[8px] w-full">
             <button
-              onClick={() => openExternalLink('https://amulex.ru/uslugi/russia?botfriend')}
+              onClick={() => openExternalLink('https://amulex.ru/uslugi/russia?utm_source=botfriend')}
               className="flex flex-1 h-[40px] items-center justify-center gap-[8px] rounded-[12px] bg-[#8AA6F4] px-[16px]"
             >
               <span className="text-[12px] font-semibold leading-[1.3] text-white">

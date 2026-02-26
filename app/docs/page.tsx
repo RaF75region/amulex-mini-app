@@ -13,7 +13,7 @@ export default function DocsPage() {
 
   const handleFindTemplate = () => {
     if (typeof window !== 'undefined') {
-      window.open('https://amulex.ru/docs', '_blank');
+      window.open('https://amulex.ru/docs?utm_source=botfriend', '_blank');
     }
   };
 

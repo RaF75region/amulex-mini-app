@@ -33,7 +33,7 @@ export default function HomePage() {
   };
 
   const handleWebsiteClick = () => {
-    window.open('https://amulex.ru', '_blank');
+    window.open('https://amulex.ru?utm_source=botfriend', '_blank');
   };
 
   const handleContactClick = () => {
