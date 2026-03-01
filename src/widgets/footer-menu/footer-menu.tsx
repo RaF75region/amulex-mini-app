@@ -11,7 +11,7 @@ const MenuIcon: React.FC<{ isActive: boolean }> = ({ isActive }) => (
       width="40"
       height="40"
       rx="20"
-      fill={isActive ? '#262627' : '#F3F5F9'}
+      fill={isActive ? '#8AA6F4' : '#F3F5F9'}
       style={{ transition: 'fill 0.3s ease-in-out' }}
     />
     <path
@@ -92,7 +92,7 @@ const ProfileIcon: React.FC<{ isActive: boolean }> = ({ isActive }) => (
 const menuItems = [
   {
     id: 'menu',
-    route: '/menu',
+    route: '/marketplace',
     icon: MenuIcon,
     size: 40,
   },
@@ -104,7 +104,7 @@ const menuItems = [
   },
   {
     id: 'home',
-    route: '/info',
+    route: '/home-new',
     icon: HomeIcon,
     size: 72,
   },
@@ -126,10 +126,10 @@ export const FooterMenu: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-8 left-0 right-0 flex justify-center px-6">
+    <nav className="fixed bottom-8 left-0 right-0 z-50 flex justify-center px-6">
       <div className="bg-white flex items-center justify-between px-3 rounded-[96px] shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] h-16 max-w-[390px] w-full">
         {menuItems.map((item) => {
-          const isActive = pathname === item.route;
+          const isActive = pathname === item.route || (item.id === 'home' && pathname === '/');
           const IconComponent = item.icon;
 
           return (

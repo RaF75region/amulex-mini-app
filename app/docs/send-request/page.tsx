@@ -153,7 +153,7 @@ export default function SendRequestPage() {
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Отправляем…' : 'Отправить запрос'}
-              {!isSubmitting && <ArrowUpRight className="h-5 w-5" />}
+              {!isSubmitting && <ArrowUpRight className="h-[8px] w-[8px]" />}
             </Button>
           </form>
         </section>
@@ -164,7 +164,7 @@ export default function SendRequestPage() {
             className="gap-2 px-0 text-gray-500 hover:bg-transparent"
             onClick={() => router.push('/docs')}
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-[8px] w-[8px]" />
             Вернуться назад
           </Button>
         </div>

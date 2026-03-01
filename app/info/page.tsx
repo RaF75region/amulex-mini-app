@@ -46,7 +46,7 @@ export default function InfoPage() {
 
             <div className="flex flex-col gap-2 w-[160px] flex-shrink-0">
               <Link
-                href="https://amulex.ru"
+                href="https://amulex.ru?utm_source=botfriend"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-1.5 rounded-[22px] bg-[#22B1A3] px-3 py-2.5 text-[13px] font-semibold text-white shadow-[0_8px_24px_rgba(34,177,163,0.25)] transition-all hover:bg-[#1e9b8e]"
@@ -55,7 +55,7 @@ export default function InfoPage() {
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
                             <Link
-                href="https://t.me/amulex_int"
+                href="https://t.me/AmulexBot"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center rounded-[22px] bg-[#E8F5F3] px-3 py-2.5 text-[13px] font-semibold text-[#22B1A3] transition-all hover:bg-[#d9eeeb]"

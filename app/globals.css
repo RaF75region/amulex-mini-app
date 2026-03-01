@@ -119,4 +119,45 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  button:not(:disabled) {
+    @apply cursor-pointer transition-all duration-200 ease-out;
+  }
+
+  button:not(:disabled):hover {
+    transform: translateY(-1px);
+    filter: brightness(0.97);
+  }
+
+  button:not(:disabled):active {
+    transform: translateY(0) scale(0.98);
+    filter: brightness(0.94);
+  }
+
+  button:focus-visible {
+    @apply outline-none ring-2 ring-[#22B1A3]/40 ring-offset-2;
+  }
+}
+
+.highlighted-card button {
+  background: linear-gradient(153.99deg, rgba(105, 137, 227, 1) 12.3%, rgba(138, 166, 244, 1) 64.82%) !important;
+  cursor: pointer !important;
+}
+
+.highlighted-card button:hover {
+  background: linear-gradient(153.99deg, rgba(105, 137, 227, 1) 12.3%, rgba(138, 166, 244, 1) 64.82%) !important;
+  cursor: pointer !important;
+}
+
+.highlighted-card button .w-12 {
+  background: white !important;
+}
+
+.highlighted-card button h3,
+.highlighted-card button p {
+  color: white !important;
+}
+
+.highlighted-card button .w-12 svg {
+  color: #8AA6F4 !important;
 }

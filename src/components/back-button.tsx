@@ -21,7 +21,7 @@ export function BackButton({ href = '/docs', label = 'Вернуться наз�
       className={cn('gap-2 px-0 text-gray-500 hover:bg-transparent', className)}
       onClick={() => router.push(href)}
     >
-      <ArrowLeft className="h-4 w-4" />
+      <ArrowLeft className="h-[8px] w-[8px]" />
       {label}
     </Button>
   );

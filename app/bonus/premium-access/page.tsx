@@ -99,42 +99,44 @@ export default function PremiumAccessPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#E9EBEF] px-4 pb-32">
-      <div className="mx-auto flex max-w-[480px] flex-col gap-4 pt-6">
-        <section className="relative overflow-hidden rounded-[36px] bg-[#00AFA0] px-6 py-8 text-white shadow-[0_25px_55px_rgba(3,155,142,0.35)]">
-          <div className="space-y-4">
-            <div>
-              <p className="text-[32px] font-semibold leading-[110%]">Премиум-доступ на год</p>
-              <p className="mt-3 text-sm leading-relaxed text-white/80">
-                Мы хотим, чтобы юридическая помощь была доступна каждому. Добавь Твоего Друга Юриста в чат Telegram и
-                получи бесплатный доступ к консультациям на год.
-              </p>
-            </div>
+    <div className="max-w-[768px] mx-auto flex flex-col justify-between pb-[130px] min-h-screen">
+      <div className="flex flex-col gap-[12px]">
+        <section className="relative overflow-hidden rounded-[16px] p-[16px] h-[184px]" style={{ backgroundImage: 'linear-gradient(144.31deg, rgba(105, 137, 227, 1) 12.3%, rgba(138, 166, 244, 1) 64.82%)' }}>
+          <div className="relative z-10">
+            <h1 className="text-[28px] font-semibold leading-[1.1] text-white mb-[12px] whitespace-pre-line">Премиум-доступ{`\n`}на год</h1>
+            <p className="text-[10px] font-normal leading-[1.3] text-white max-w-[250px]">
+              Мы хотим, чтобы юридическая помощь была доступна каждому. Серверы и команда стоят денег, но есть ценность, которую мы любим — это люди, которым мы помогаем. Добавь Твоего Друга Юриста в чат Telegram и получи бесплатный доступ к консультациям на год!
+            </p>
           </div>
-          <div className="pointer-events-none absolute -right-4 bottom-0 h-32 w-32 rounded-full bg-white/10" />
-          <Sparkles className="pointer-events-none absolute right-6 bottom-8 h-12 w-12 text-white/70" />
+          <div className="pointer-events-none absolute right-[-124px] top-1/2 -translate-y-1/2 w-[250px] h-[250px]">
+            <img
+              src="/images/star-premium.png"
+              alt=""
+              className="w-full h-full object-contain grayscale transform rotate-[-165deg] scale-y-[-1]"
+            />
+          </div>
         </section>
 
-        <section className="rounded-[36px] bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-          <h2 className="text-2xl font-semibold text-gray-900">Условия:</h2>
-          <div className="mt-4 space-y-3">
+        <section className="rounded-[16px] bg-white p-[16px] shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)]">
+          <h2 className="text-[16px] font-semibold text-[#212121] leading-[1.2] mb-[16px]">Условия:</h2>
+          <div className="flex flex-col gap-[12px]">
             {conditions.map((condition) => (
               <div
                 key={condition.number}
-                className="flex items-start gap-3 rounded-[20px] bg-white"
+                className="flex items-center gap-[8px]"
               >
                 <span
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[18px] bg-[#22B1A31F] text-base font-semibold text-[#00AFA0] font-mono"
+                  className="flex w-[32px] h-[32px] shrink-0 items-center justify-center rounded-[8px] bg-[rgba(138,166,244,0.12)] text-[16px] font-semibold text-[#8aa6f4] leading-[1.2]"
                 >
                   {condition.number}
                 </span>
-                <p className="text-sm leading-relaxed text-gray-700">
+                <p className="text-[10px] font-normal leading-[1.3] text-[#8e939d] flex-1">
                   {condition.highlight ? (
                     <>
                       {condition.text}{' '}
                       <button
                         type="button"
-                        className="font-semibold text-[#22B1A3]"
+                        className="font-semibold text-[#8aa6f4]"
                         onClick={handleBotCopy}
                       >
                         {condition.highlight}
@@ -151,10 +153,10 @@ export default function PremiumAccessPage() {
           </div>
         </section>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-[8px]">
           <div className="relative">
-            <span className="pointer-events-none absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-[18px] bg-white text-[#9CA3AF]">
-              <LinkIcon className="h-4 w-4" strokeWidth={1.5} />
+            <span className="pointer-events-none absolute left-[16px] top-1/2 -translate-y-1/2 text-[#8e939d]">
+              <LinkIcon className="w-[12px] h-[12px]" strokeWidth={2} />
             </span>
             <Input
               id="premium-link"
@@ -162,23 +164,23 @@ export default function PremiumAccessPage() {
               value={linkValue}
               onChange={(event) => setLinkValue(event.target.value)}
               placeholder="Вставьте ссылку для проверки"
-              className="h-14 rounded-[30px] border border-transparent bg-white px-14 text-base font-medium text-[#111827] placeholder:text-[#9CA3AF] shadow-[0_20px_45px_rgba(15,23,42,0.08)] focus:border-[#22B1A3] focus:ring-0 focus:ring-offset-0 focus-visible:border-[#22B1A3] focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="h-[40px] rounded-[12px] border border-[#e9ebef] bg-white pl-[36px] pr-[16px] text-[10px] font-normal text-[#212121] placeholder:text-[#8e939d] leading-[1.3] shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] focus:border-[#8aa6f4] focus:ring-0 focus:ring-offset-0 focus-visible:border-[#8aa6f4] focus-visible:ring-0 focus-visible:ring-offset-0"
             />
           </div>
           {error && <p className="text-xs text-red-500">{error}</p>}
           <Button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-[24px] bg-[#00AFA0] text-base font-semibold text-white hover:bg-[#009486]"
+            className="flex h-[40px] w-full items-center justify-center gap-[8px] rounded-[12px] bg-[#8aa6f4] text-[12px] font-semibold text-white leading-[1.3] hover:bg-[#7a96e4]"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Отправляем…' : 'Отправить'}
-            {!isSubmitting && <ArrowUpRight className="h-5 w-5" />}
+            {!isSubmitting && <ArrowUpRight className="w-[8px] h-[8px]" />}
           </Button>
         </form>
+      </div>
 
-        <div className="flex justify-center pt-2">
-          <BackButton href="/bonus" />
-        </div>
+      <div className="flex justify-center items-center gap-[8px]">
+        <BackButton href="/bonus" />
       </div>
 
       <StatusDialog

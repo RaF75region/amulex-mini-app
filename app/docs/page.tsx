@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { DocumentCard } from '@/entities/documents';
+import { InfoCard } from '@/components/home/info-card';
 
 export default function DocsPage() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function DocsPage() {
 
   const handleFindTemplate = () => {
     if (typeof window !== 'undefined') {
-      window.open('https://amulex.ru/docs', '_blank');
+      window.open('https://amulex.ru/docs?utm_source=botfriend', '_blank');
     }
   };
 
@@ -24,7 +25,7 @@ export default function DocsPage() {
     <div className="max-w-[768px] mx-auto">
       {/* Заголовок */}
       <h1 className="text-4xl font-bold text-gray-900 mb-8">
-        Документы
+        Услуги
       </h1>
 
       {/* Первые две карточки в ряд */}
@@ -50,7 +51,7 @@ export default function DocsPage() {
         <div className="mb-6 highlighted-card">
           <DocumentCard
             title="Не нашли, что искали?"
-            description="Напишите нам ваше предложение - чего не хватает в нашем функционале?"
+            description="Отправьте запрос, наши специалисты свяжутся с Вами в течение 10 минут"
             onClick={handleContactSpecialist}
             showIllustration={true}
           />
