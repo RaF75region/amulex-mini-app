@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 const unionIcon = '/assets/union-white.svg';
@@ -8,10 +9,9 @@ const logoImage = '/assets/amulex-logo.svg';
 
 interface CreatorsCardProps {
   onWebsiteClick?: () => void;
-  onContactClick?: () => void;
 }
 
-export function CreatorsCard({ onWebsiteClick, onContactClick }: CreatorsCardProps) {
+export function CreatorsCard({ onWebsiteClick }: CreatorsCardProps) {
   return (
     <div
       className="bg-white flex gap-[12px] items-start justify-center p-[16px] rounded-[16px] shadow-[0px_2px_16px_0px_rgba(0,0,0,0.06)] w-full"
@@ -64,22 +64,16 @@ export function CreatorsCard({ onWebsiteClick, onContactClick }: CreatorsCardPro
             <img alt="" className="block max-w-none w-full h-full" src={unionIcon} />
           </div>
         </button>
-        <button
-          onClick={onContactClick}
-          className={cn(
-            'bg-[#f3f5f9] flex h-[40px] items-center justify-center px-[16px] rounded-[12px] w-full',
-            'transition-transform active:scale-95'
-          )}
+        <Link
+          href="https://t.me/AmulexBot"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center rounded-[22px] bg-[#E8F5F3] px-3 py-2.5 text-[13px] font-semibold text-[#22B1A3] transition-all hover:bg-[#d9eeeb] w-full"
           data-name="Кнопка"
           data-node-id="426:9799"
         >
-          <div
-            className="flex flex-col font-semibold justify-center text-[#8aa6f4] text-[12px] leading-[1.3] whitespace-nowrap"
-            data-node-id="426:9800"
-          >
-            Связаться
-          </div>
-        </button>
+          Связаться
+        </Link>
       </div>
     </div>
   );
