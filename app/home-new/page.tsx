@@ -203,7 +203,7 @@ export default function HomePage() {
           </div>
 
           {/* Creators card */}
-          <CreatorsCard onWebsiteClick={handleWebsiteClick} onContactClick={handleContactClick} />
+          <CreatorsCard onWebsiteClick={handleWebsiteClick} />
 
           {/* Public offer card */}
           <PublicOfferCard onClick={handlePublicOfferClick} />
