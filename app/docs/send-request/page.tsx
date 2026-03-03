@@ -48,7 +48,7 @@ export default function SendRequestPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#E9EBEF] px-4 pb-28">
+    <div className="min-h-0 bg-[#E9EBEF] px-4 pb-28">
       <div className="mx-auto flex max-w-[480px] flex-col gap-6 pt-8">
         <header className="space-y-2">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#22B1A3]">Документы</p>

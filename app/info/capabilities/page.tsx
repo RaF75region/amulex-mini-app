@@ -46,7 +46,7 @@ export default function CapabilitiesPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-[#EEF2F7] px-4 pb-32">
+    <div className="min-h-0 bg-[#EEF2F7] px-4 pb-32">
       <div className="mx-auto flex max-w-[480px] flex-col gap-4 pt-6">
         {/* Header Section */}
         <header className="space-y-2">

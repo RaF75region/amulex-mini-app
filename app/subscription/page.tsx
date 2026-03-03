@@ -81,7 +81,7 @@ function SubscriptionContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F5F9] flex flex-col relative">
+    <div className="min-h-0 bg-[#F3F5F9] flex flex-col relative">
       <div className="mx-auto flex w-full max-w-[480px] flex-col pt-6 pb-8 px-6 flex-1">
         {/* Content Area */}
         <div className="flex flex-col pb-6">
@@ -306,7 +306,7 @@ function SubscriptionContent() {
 export default function SubscriptionPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-[#F3F5F9] flex items-center justify-center">
+      <div className="min-h-0 bg-[#F3F5F9] flex items-center justify-center">
         <p className="text-[#8E939D]">Загрузка...</p>
       </div>
     }>

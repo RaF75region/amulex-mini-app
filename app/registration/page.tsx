@@ -168,14 +168,14 @@ export default function RegistrationPage() {
 
   if (rateId === null && !TEST_MODE) {
     return (
-      <div className="min-h-screen bg-[#F3F5F9] flex items-center justify-center">
+      <div className="min-h-0 bg-[#F3F5F9] flex items-center justify-center">
         <p className="text-[#8E939D]">Загрузка...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#F3F5F9] flex flex-col">
+    <div className="min-h-0 bg-[#F3F5F9] flex flex-col">
       <div className="flex-1 flex flex-col justify-between px-6 pt-6 pb-8">
         <div className="flex flex-col gap-6 w-full">
           {/* Header */}

@@ -26,7 +26,7 @@ export default function PersonalDataPage() {
   }, [webApp]);
 
   return (
-    <div className="min-h-screen bg-[#EEF2F7] px-4 pb-32">
+    <div className="min-h-0 bg-[#EEF2F7] px-4 pb-32">
       <div className="mx-auto flex max-w-[480px] flex-col gap-4 pt-6">
         <div className="flex items-center justify-between gap-3">
           <Link
