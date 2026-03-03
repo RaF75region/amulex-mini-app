@@ -99,7 +99,7 @@ export default function PremiumAccessPage() {
   };
 
   return (
-    <div className="max-w-[768px] mx-auto flex flex-col justify-between pb-[130px] min-h-0">
+    <div className="max-w-[768px] mx-auto flex flex-col gap-6 min-h-0">
       <div className="flex flex-col gap-[12px]">
         <section className="relative overflow-hidden rounded-[16px] p-[16px] h-[184px]" style={{ backgroundImage: 'linear-gradient(144.31deg, rgba(105, 137, 227, 1) 12.3%, rgba(138, 166, 244, 1) 64.82%)' }}>
           <div className="relative z-10">
