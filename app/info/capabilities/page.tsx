@@ -102,9 +102,9 @@ export default function CapabilitiesPage() {
         <div className="flex justify-center pt-2">
           <button
             onClick={() => router.push('/info')}
-            className="flex items-center gap-2 text-[13px] text-[#6B7280] transition-colors hover:text-[#0F172A]"
+            className="flex items-center gap-2 text-[16px] font-medium text-[#8E939D] transition-colors hover:text-[#8AA6F4]"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
+            <ArrowLeft className="h-[16px] w-[16px]" />
             Вернуться назад
           </button>
         </div>

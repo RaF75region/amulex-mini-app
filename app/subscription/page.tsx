@@ -84,9 +84,9 @@ function SubscriptionContent() {
     <div className="min-h-screen bg-[#F3F5F9] flex flex-col relative">
       <div className="mx-auto flex w-full max-w-[480px] flex-col pt-6 pb-8 px-6 flex-1">
         {/* Content Area */}
-        <div className="flex flex-col flex-1 pb-6">
+        <div className="flex flex-col pb-6">
           {/* Content */}
-          <div className="flex flex-col gap-6 mb-auto">
+          <div className="flex flex-col gap-6">
             {/* Header */}
             <div className="flex items-center gap-3">
               <h1 className="text-[28px] font-semibold leading-[1.1] text-[#212121]">Подписка</h1>
@@ -239,7 +239,7 @@ function SubscriptionContent() {
             </div>
             <button
               onClick={() => router.back()}
-              className="text-[12px] font-medium leading-[1.2] text-[#8E939D] transition-colors hover:text-[#8AA6F4]"
+              className="text-[16px] font-medium leading-[1.2] text-[#8E939D] transition-colors hover:text-[#8AA6F4]"
             >
               Вернуться назад
             </button>

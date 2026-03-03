@@ -317,7 +317,7 @@ export default function MarketplacePage() {
                   bgcolor: '#F3F5F9',
                   color: '#8AA6F4',
                   fontFamily: 'Inter, sans-serif',
-                  fontSize: '12px',
+                  fontSize: '16px',
                   fontWeight: 600,
                   lineHeight: '1.3',
                   cursor: 'pointer',

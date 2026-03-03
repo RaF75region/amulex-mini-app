@@ -95,9 +95,9 @@ export default function ContactSpecialistPage() {
       <div className="flex justify-center items-center">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-[8px] text-[12px] font-medium text-[#8e939d] leading-[1.2]"
+          className="flex items-center gap-[8px] text-[16px] font-medium text-[#8e939d] leading-[1.2] hover:text-[#8AA6F4] transition-colors"
         >
-          <ArrowLeft className="w-[8px] h-[8px] text-[#8e939d]" />
+          <ArrowLeft className="w-[16px] h-[16px] text-[#8e939d]" />
           Вернуться назад
         </button>
       </div>

@@ -203,7 +203,7 @@ export default function GiftBonusPage() {
         open={showSuccessDialog}
         onOpenChange={setShowSuccessDialog}
         type="success"
-        title="Ура! Вы получили премиум-доступ"
+        title="Ваша заявка успешно отправлена!"
         description=""
       />
     </div>
