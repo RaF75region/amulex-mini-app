@@ -92,12 +92,12 @@ export default function ContactSpecialistPage() {
         </form>
       </div>
 
-      <div className="flex justify-center items-center gap-[8px]">
-        <ArrowLeft className="w-[8px] h-[8px] text-[#8e939d]" />
+      <div className="flex justify-center items-center">
         <button
-          onClick={() => router.push('/docs')}
-          className="text-[12px] font-medium text-[#8e939d] leading-[1.2]"
+          onClick={() => router.back()}
+          className="flex items-center gap-[8px] text-[12px] font-medium text-[#8e939d] leading-[1.2]"
         >
+          <ArrowLeft className="w-[8px] h-[8px] text-[#8e939d]" />
           Вернуться назад
         </button>
       </div>
