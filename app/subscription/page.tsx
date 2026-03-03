@@ -62,7 +62,7 @@ function SubscriptionContent() {
     }
     // Find the selected plan to get duration
     const selectedPlan = subscriptionPlans.find(plan => plan.rateId === rateId);
-    
+
     // Store selected rateId and duration in sessionStorage
     if (typeof window !== 'undefined' && selectedPlan) {
       sessionStorage.setItem('selectedRateId', rateIdString);
@@ -197,7 +197,7 @@ function SubscriptionContent() {
                 type="button"
                 onClick={handleBonusClick}
                 className="relative overflow-hidden rounded-[16px] p-4 shadow-[0_2px_16px_rgba(0,0,0,0.06)] text-left h-[114px]"
-                style={{ 
+                style={{
                   backgroundImage: 'linear-gradient(156deg, rgb(105, 137, 227) 12.3%, rgb(138, 166, 244) 64.8%)'
                 }}
               >
@@ -247,24 +247,24 @@ function SubscriptionContent() {
         </div>
       </div>
 
-      {/* Success Modal */}
-      {showSuccessModal && (
+      {/* Success Modal — закомментировано: при успешной оплате закрывать мини-апп Telegram вместо показа модалки */}
+      {/* {showSuccessModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-6">
           <div className="bg-white rounded-[16px] p-6 w-full max-w-[400px] relative">
             <div className="flex flex-col gap-6 items-center">
               {/* Text Content */}
-              <div className="flex flex-col gap-4 items-center relative w-full">
+              {/* <div className="flex flex-col gap-4 items-center relative w-full"> */}
                 {/* Success Icon */}
-                <div className="w-10 h-10 relative shrink-0">
+                {/* <div className="w-10 h-10 relative shrink-0">
                   <Image
                     src="/images/subscription/success-icon.png"
                     alt=""
                     fill
                     className="object-contain"
                   />
-                </div>
+                </div> */}
                 {/* Title */}
-                <div className="flex flex-col items-center w-full">
+                {/* <div className="flex flex-col items-center w-full">
                   <p className="text-[16px] font-semibold leading-[1.2] text-[#212121] text-center">
                     Ура! Вы получили
                   </p>
@@ -272,9 +272,9 @@ function SubscriptionContent() {
                     <span className="text-[#212121]">премиум-доступ на </span>
                     <span className="text-[#8AA6F4]">{selectedPlanDuration}</span>
                   </p>
-                </div>
+                </div> */}
                 {/* Close Button (X) */}
-                <button
+                {/* <button
                   onClick={() => setShowSuccessModal(false)}
                   className="absolute right-0 top-0 w-3 h-3 rotate-[-90deg]"
                 >
@@ -285,9 +285,9 @@ function SubscriptionContent() {
                     className="object-contain"
                   />
                 </button>
-              </div>
+              </div> */}
               {/* Back Button */}
-              <button
+              {/* <button
                 onClick={() => setShowSuccessModal(false)}
                 className="bg-[#F3F5F9] h-10 w-full rounded-[12px] px-4 flex items-center justify-center"
               >
@@ -298,7 +298,7 @@ function SubscriptionContent() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

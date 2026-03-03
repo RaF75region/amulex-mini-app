@@ -64,7 +64,7 @@ export default function HomePage() {
   };
 
   const handleMarketplaceClick = () => {
-    router.push('/marketplace');
+    router.push('/docs');
   };
 
   return (
@@ -92,8 +92,8 @@ export default function HomePage() {
           <div className="flex items-start w-full" data-name="Ряд" data-node-id="426:9738">
             <FeatureCard
               icon={iconArrow}
-              title="Маркетплейс юристов"
-              description="Большой выбор специалистов"
+              title="Больше услуг"
+              description="от Твоего Друга Юриста"
               variant="primary"
               nodeId="426:9739"
               iconNodeId="426:9742"
