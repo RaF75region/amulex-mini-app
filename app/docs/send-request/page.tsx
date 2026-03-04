@@ -6,13 +6,14 @@ import { ArrowUpRight, ArrowLeft, FileText, Send, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { StatusDialog } from '@/components/status-dialog';
 
 export default function SendRequestPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({ topic: '', description: '', name: '', phone: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -25,7 +26,6 @@ export default function SendRequestPage() {
     event.preventDefault();
     setIsSubmitting(true);
     setError(null);
-    setSuccess(null);
 
     try {
       const response = await fetch('/api/docs/send-request', {
@@ -38,8 +38,8 @@ export default function SendRequestPage() {
         throw new Error('Не удалось отправить запрос');
       }
 
-      setSuccess('Запрос отправлен. Мы свяжемся с Вами в течение 10 минут.');
       setFormData({ topic: '', description: '', name: '', phone: '' });
+      setShowSuccessDialog(true);
     } catch {
       setError('Не удалось отправить запрос. Попробуйте ещё раз.');
     } finally {
@@ -145,7 +145,6 @@ export default function SendRequestPage() {
             </div>
 
             {error && <p className="text-xs text-red-500">{error}</p>}
-            {success && <p className="text-xs text-[#22B1A3]">{success}</p>}
 
             <Button
               type="submit"
@@ -169,6 +168,16 @@ export default function SendRequestPage() {
           </Button>
         </div>
       </div>
+
+      <StatusDialog
+        open={showSuccessDialog}
+        onOpenChange={setShowSuccessDialog}
+        type="success"
+        title="Ваше сообщение успешно отправлено!"
+        description="Мы рассмотрим его, в ближайшее время и свяжемся с вами."
+        buttonText="Вернуться назад"
+        onButtonClick={() => { setShowSuccessDialog(false); router.push('/docs'); }}
+      />
     </div>
   );
 }

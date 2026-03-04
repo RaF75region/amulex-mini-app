@@ -1,11 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight, BarChart3, ListChecks, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useTelegram } from '@/shared/hooks/use-telegram';
 import { useMediaQuery, useTheme } from '@mui/material';
+import { StatusDialog } from '@/components/status-dialog';
 
 const featureItems = [
   {
@@ -27,6 +29,7 @@ export default function LegalAnalysisPage() {
   const { user } = useTelegram();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
   const handleOrder = async () => {
     if (typeof window !== 'undefined' && window.Telegram?.WebApp && user?.id) {
@@ -40,7 +43,7 @@ export default function LegalAnalysisPage() {
           }),
         });
 
-        window.Telegram.WebApp.close();
+        setShowSuccessDialog(true);
       } catch (error) {
         console.error('Error sending message:', error);
       }
@@ -149,6 +152,21 @@ export default function LegalAnalysisPage() {
           </Button>
         </div>
       </div>
+
+      <StatusDialog
+        open={showSuccessDialog}
+        onOpenChange={setShowSuccessDialog}
+        type="success"
+        title="Режим юридического анализа запущен!"
+        description="В чате Твоего Друга Юриста опишите вашу проблему и ответьте на уточняющие вопросы"
+        buttonText="Перейти"
+        onButtonClick={() => {
+          setShowSuccessDialog(false);
+          if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+            window.Telegram.WebApp.close();
+          }
+        }}
+      />
     </div>
   );
 }

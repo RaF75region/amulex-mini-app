@@ -15,6 +15,7 @@ interface StatusDialogProps {
   title?: string;
   description?: string;
   buttonText?: string;
+  onButtonClick?: () => void;
 }
 
 export function StatusDialog({
@@ -24,6 +25,7 @@ export function StatusDialog({
   title,
   description,
   buttonText = 'Вернуться назад',
+  onButtonClick,
 }: StatusDialogProps) {
   const isSuccess = type === 'success';
 
@@ -61,7 +63,7 @@ export function StatusDialog({
           <Button
             variant="ghost"
             className="h-[40px] w-full rounded-[12px] bg-[#f3f5f9] px-[16px] text-[12px] font-semibold text-[#8aa6f4] leading-[1.3] hover:bg-[#e9ebef]"
-            onClick={() => onOpenChange(false)}
+            onClick={() => { onButtonClick ? onButtonClick() : onOpenChange(false); }}
           >
             {buttonText}
           </Button>

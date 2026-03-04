@@ -203,8 +203,9 @@ export default function GiftBonusPage() {
         open={showSuccessDialog}
         onOpenChange={setShowSuccessDialog}
         type="success"
-        title="Ваша заявка успешно отправлена!"
-        description=""
+        title="Ваше сообщение успешно отправлено!"
+        description="Мы рассмотрим его, в ближайшее время и свяжемся с вами."
+        buttonText="Вернуться назад"
       />
     </div>
   );

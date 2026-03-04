@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 import { useTelegram } from '@/shared/hooks/use-telegram';
+import { StatusDialog } from '@/components/status-dialog';
 
 export default function ContactSpecialistPage() {
   const router = useRouter();
@@ -13,6 +13,7 @@ export default function ContactSpecialistPage() {
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,7 +49,7 @@ export default function ContactSpecialistPage() {
       }
 
       setMessage('');
-      router.push('/docs');
+      setShowSuccessDialog(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Не удалось отправить запрос. Попробуйте ещё раз.');
     } finally {
@@ -101,6 +102,16 @@ export default function ContactSpecialistPage() {
           Вернуться назад
         </button>
       </div>
+
+      <StatusDialog
+        open={showSuccessDialog}
+        onOpenChange={setShowSuccessDialog}
+        type="success"
+        title="Ваше сообщение успешно отправлено!"
+        description="Мы рассмотрим его, в ближайшее время и свяжемся с вами."
+        buttonText="Вернуться назад"
+        onButtonClick={() => { setShowSuccessDialog(false); router.back(); }}
+      />
     </div>
   );
 }
