@@ -24,8 +24,8 @@ export default function HomePage() {
 
   const handleRegisterClick = () => {
     // Открываем чат с ботом Амулекс
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      window.Telegram.WebApp.openTelegramLink('https://t.me/AmulexBot');
+    if (typeof window !== 'undefined' && window.WebApp) {
+      window.WebApp.openLink('https://t.me/AmulexBot');
     } else {
       // Fallback для обычного браузера
       window.open('https://t.me/AmulexBot', '_blank');
@@ -38,8 +38,8 @@ export default function HomePage() {
 
   const handleContactClick = () => {
     // Открываем Telegram канал Амулекс
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      window.Telegram.WebApp.openTelegramLink('https://t.me/amulex_ru');
+    if (typeof window !== 'undefined' && window.WebApp) {
+      window.WebApp.openLink('https://t.me/amulex_ru');
     } else {
       // Fallback для обычного браузера
       window.open('https://t.me/amulex_ru', '_blank');
@@ -50,9 +50,8 @@ export default function HomePage() {
     // Открываем PDF оферты для скачивания/просмотра
     const offerUrl = 'https://1d47d82f-rag-test.s3.twcstorage.ru/files/%D0%9E%D1%84%D0%B5%D1%80%D1%82%D0%B0%20%22%D0%A2%D0%B2%D0%BE%D0%B9%20%D0%94%D1%80%D1%83%D0%B3%20%D0%AE%D1%80%D0%B8%D1%81%D1%82%22.pdf';
 
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      // В Telegram Mini App используем openLink для внешних URL
-      window.Telegram.WebApp.openLink(offerUrl);
+    if (typeof window !== 'undefined' && window.WebApp) {
+      window.WebApp.openLink(offerUrl);
     } else {
       // Fallback для обычного браузера
       window.open(offerUrl, '_blank');

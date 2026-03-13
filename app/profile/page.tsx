@@ -42,19 +42,14 @@ export default function ProfilePage() {
   const [selectedRateId, setSelectedRateId] = useState<string | null>(null);
 
   // Enable local testing mode
-  const isLocalTesting = typeof window !== 'undefined' && !window.Telegram?.WebApp?.initData;
+  const isLocalTesting = typeof window !== 'undefined' && !window.WebApp?.initData;
 
   const openExternalLink = (url: string) => {
     if (typeof window === 'undefined') {
       return;
     }
 
-    const telegramWebApp = webApp ?? window.Telegram?.WebApp;
-
-    if (url.startsWith('https://t.me') && telegramWebApp?.openTelegramLink) {
-      telegramWebApp.openTelegramLink(url);
-      return;
-    }
+    const telegramWebApp = webApp ?? window.WebApp;
 
     if (telegramWebApp?.openLink) {
       telegramWebApp.openLink(url);

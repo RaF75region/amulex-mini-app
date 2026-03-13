@@ -32,7 +32,7 @@ export default function LegalAnalysisPage() {
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
   const handleOrder = async () => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp && user?.id) {
+    if (typeof window !== 'undefined' && window.WebApp && user?.id) {
       try {
         await fetch('/api/send-message-to-bot', {
           method: 'POST',
@@ -53,8 +53,8 @@ export default function LegalAnalysisPage() {
   const handlePreview = () => {
     const previewUrl = 'https://1d47d82f-rag-test.s3.twcstorage.ru/files/%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%20%D1%8E%D1%80%D0%B8%D0%B4%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D0%BE%D1%82%D1%87%D0%B5%D1%82%D0%B0.pdf';
 
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      window.Telegram.WebApp.openLink(previewUrl);
+    if (typeof window !== 'undefined' && window.WebApp) {
+      window.WebApp.openLink(previewUrl);
     } else {
       window.open(previewUrl, '_blank');
     }
@@ -162,8 +162,8 @@ export default function LegalAnalysisPage() {
         buttonText="Перейти"
         onButtonClick={() => {
           setShowSuccessDialog(false);
-          if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-            window.Telegram.WebApp.close();
+          if (typeof window !== 'undefined' && window.WebApp) {
+            window.WebApp.close();
           }
         }}
       />

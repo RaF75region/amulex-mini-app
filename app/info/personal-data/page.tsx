@@ -15,7 +15,7 @@ export default function PersonalDataPage() {
       return;
     }
 
-    const telegramWebApp = webApp ?? window.Telegram?.WebApp;
+    const telegramWebApp = webApp ?? window.WebApp;
 
     if (telegramWebApp?.openLink) {
       telegramWebApp.openLink(PDF_URL);
