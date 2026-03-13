@@ -34,9 +34,10 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Create non-root user for security
+# Create non-root user for security and install wget for healthcheck
 RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+    adduser --system --uid 1001 nextjs && \
+    apk add --no-cache wget
 
 # Copy necessary files from builder
 COPY --from=builder /app/public ./public
@@ -51,6 +52,9 @@ EXPOSE 3014
 
 ENV PORT=3014
 ENV HOSTNAME="0.0.0.0"
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:3014/ || exit 1
 
 # Start the application
 CMD ["node", "server.js"]
