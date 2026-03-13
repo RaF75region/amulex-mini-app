@@ -2,50 +2,47 @@
 
 import { useMemo } from 'react';
 
-interface TelegramUser {
+interface MaxUser {
   id: number;
   first_name: string;
   last_name?: string;
   username?: string;
   language_code?: string;
-  is_premium?: boolean;
   photo_url?: string;
 }
 
 export const useTelegram = () => {
-  const telegramContext = useMemo(() => {
-    if (typeof window === 'undefined' || !window.Telegram?.WebApp) {
+  const webAppContext = useMemo(() => {
+    if (typeof window === 'undefined' || !window.WebApp) {
       return {
-        user: null as TelegramUser | null,
+        user: null as MaxUser | null,
         initData: '',
         isReady: false,
         webApp: undefined,
       };
     }
 
-    const tg = window.Telegram.WebApp;
+    const app = window.WebApp;
 
     return {
-      user: tg.initDataUnsafe.user ?? null,
-      initData: tg.initData ?? '',
+      user: app.initDataUnsafe.user ?? null,
+      initData: app.initData ?? '',
       isReady: true,
-      webApp: tg,
+      webApp: app,
     };
   }, []);
 
-  return telegramContext;
+  return webAppContext;
 };
 
-// Утилита для получения user ID из разных источников
+// Утилита для получения user ID из MAX Bridge или sessionStorage
 export const getTelegramUserId = (): number | null => {
-  // Пытаемся получить из Telegram WebApp
-  if (typeof window !== 'undefined' && window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
-    return window.Telegram.WebApp.initDataUnsafe.user.id;
+  if (typeof window !== 'undefined' && window.WebApp?.initDataUnsafe?.user?.id) {
+    return window.WebApp.initDataUnsafe.user.id;
   }
 
-  // Пытаемся получить из sessionStorage
   if (typeof window !== 'undefined') {
-    const storedId = sessionStorage.getItem('telegram_user_id');
+    const storedId = sessionStorage.getItem('max_user_id');
     if (storedId) {
       return parseInt(storedId, 10);
     }

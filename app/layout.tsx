@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F3F5F9]`}
       >
         <Script
-          src="https://telegram.org/js/telegram-web-app.js?59"
+          src="https://st.max.ru/js/max-web-app.js"
           strategy="beforeInteractive"
         />
         <TelegramProvider>

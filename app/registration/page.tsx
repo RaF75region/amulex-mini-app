@@ -9,7 +9,7 @@ import { useTelegram } from '@/shared/hooks/use-telegram';
 import Image from 'next/image';
 
 // Test mode for local development
-const TEST_MODE = process.env.NODE_ENV === 'development' && typeof window !== 'undefined' && !window.Telegram?.WebApp?.initData;
+const TEST_MODE = process.env.NODE_ENV === 'development' && typeof window !== 'undefined' && !window.WebApp?.initData;
 
 export default function RegistrationPage() {
   const router = useRouter();
@@ -152,11 +152,9 @@ export default function RegistrationPage() {
       router.push('/subscription?payment=success');
 
       // Close WebApp if not in test mode
-      if (typeof window !== 'undefined' && window.Telegram?.WebApp && !TEST_MODE) {
+      if (typeof window !== 'undefined' && window.WebApp && !TEST_MODE) {
         setTimeout(() => {
-          if (window.Telegram?.WebApp) {
-            window.Telegram.WebApp.close();
-          }
+          window.WebApp?.close();
         }, 2000);
       }
     } catch (err) {
