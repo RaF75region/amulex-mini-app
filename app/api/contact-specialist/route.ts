@@ -34,9 +34,9 @@ export async function POST(request: Request) {
         [telegram_id, username || null, message_text.trim()]
       );
 
-      // Send message to Telegram group
-      const botToken = process.env.TELEGRAM_BOT_TOKEN;
-      const groupId = process.env.TELEGRAM_GROUP_ID;
+      // Send message to MAX group
+      const botToken = process.env.MAX_BOT_TOKEN;
+      const groupId = process.env.MAX_GROUP_ID;
 
       if (botToken && groupId) {
         const messageText = `📩 Новое предложение/жалоба:
@@ -44,16 +44,16 @@ export async function POST(request: Request) {
         👤 От: ${username || 'Аноним'} (ID: ${telegram_id})
         💬 Сообщение: ${message_text.trim()}`;
 
-        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        await fetch(`https://platform-api.max.ru/messages?chat_id=${groupId}`, {
           method: 'POST',
           headers: {
+            'Authorization': botToken,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            chat_id: groupId,
             text: messageText,
           }),
-        }).catch(err => console.error('Failed to send Telegram message:', err));
+        }).catch(err => console.error('Failed to send MAX message:', err));
       }
 
       return NextResponse.json({

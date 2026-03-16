@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   try {
     const { telegram_id, message } = await request.json();
 
-    const botToken = process.env.TELEGRAM_BOT_TOKEN;
+    const botToken = process.env.MAX_BOT_TOKEN;
 
     if (!botToken) {
       throw new Error('Bot token not configured');
@@ -31,13 +31,13 @@ export async function POST(request: NextRequest) {
         [message || 'legal-consultant', telegram_id]
       );
 
-      const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      const response = await fetch(`https://platform-api.max.ru/messages?user_id=${telegram_id}`, {
         method: 'POST',
         headers: {
+          'Authorization': botToken,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          chat_id: telegram_id,
           text: BOT_MESSAGES.LEGAL_CONSULTANT,
         }),
       });
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
       const data = await response.json();
 
       if (!response.ok) {
-        console.error('Telegram API error:', data);
+        console.error('MAX API error:', data);
         throw new Error('Failed to send message');
       }
 
